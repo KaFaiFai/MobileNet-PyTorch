@@ -1,3 +1,7 @@
+"""
+random stuff goes here
+"""
+
 from pathlib import Path
 import torch
 from torch import Tensor
@@ -28,6 +32,7 @@ def gray2rgb(image: Tensor):
 
 
 def be_deterministic(seed=0):
+    # may not work
     torch.manual_seed(seed)
     random.seed(seed)
     np.random.seed(seed)

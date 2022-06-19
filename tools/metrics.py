@@ -1,8 +1,14 @@
 import sklearn.metrics
+import torch
+import numpy as np
 
 
 class ClassificationMetrics:
     def __init__(self, truths, preds):
+        if type(truths) == torch.Tensor:
+            truths = truths.cpu()
+        if type(preds) == torch.Tensor:
+            preds = preds.cpu()
         self.truths = truths
         self.preds = preds
 
@@ -28,8 +34,11 @@ class ClassificationMetrics:
 
 
 def test():
-    truths = [0, 2, 1, 3, 5, 3, 4, 2, 1, 3, 2]
-    preds = [0, 2, 4, 0, 2, 3, 3, 3, 3, 1, 2]
+    truths = torch.tensor([0, 2, 1, 3, 5, 3, 4, 2, 1, 3, 2]).to("cuda")
+    preds = torch.tensor([0, 2, 4, 0, 2, 3, 3, 3, 3, 1, 2]).to("cuda")
+    # truths = np.array([0, 2, 1, 3, 5, 3, 4, 2, 1, 3, 2])
+    # preds = np.array([0, 2, 4, 0, 2, 3, 3, 3, 3, 1, 2])
+
     metrics = ClassificationMetrics(truths, preds)
     metrics.print_report()
 
