@@ -19,12 +19,12 @@ def train():
     lr = 3e-4
 
     # experiment settings
-    data = "cifar10"  # ["dogs", "mnist", "cifar10", "imagenet"]
+    data = "imagenet"  # ["dogs", "mnist", "cifar10", "imagenet"]
     model_type = "mobile_net"  # ["mobile_net", "lenet"]
     device = "cuda" if torch.cuda.is_available() else "cpu"
-    num_workers = 4
+    num_workers = 2
     num_epochs = 50
-    save_step = 5
+    save_step = 1
     out_directory = r".\out"
     pretrained_model_path = r"C:\_Project\Pycharm Projects\MobileNet\out\0004\network_mobile_net_0010.pth"  # r"C:\_Project\Pycharm Projects\MobileNet\out\0001\network_0030.pth"
 
@@ -73,8 +73,8 @@ def train():
 
     # training loop
     for epoch in range(from_epoch, num_epochs):
-        # print(f"{'-' * 10} Epoch {epoch:2d}/{num_epochs} {'-' * 10}")
-        # train_epoch(network, train_dataloader, optimizer, criterion, **c)
+        print(f"{'-' * 10} Epoch {epoch:2d}/{num_epochs} {'-' * 10}")
+        train_epoch(network, train_dataloader, optimizer, criterion, **c)
 
         print(f"{'-' * 5} Validation result {'-' * 5}")
         validate(network, test_dataloader, criterion, **c)
