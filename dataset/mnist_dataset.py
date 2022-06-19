@@ -9,7 +9,7 @@ class MNISTDataset(torchvision.datasets.MNIST):
             self.transform = transforms.Compose([
                 transforms.ToTensor(),
                 transforms.Lambda(gray2rgb),
-                transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5), inplace=True),
+                transforms.Normalize([0.485, 0.456, 0.406], [0.229, 0.224, 0.225], inplace=True),
                 transforms.Resize((28, 28))
             ])
         else:

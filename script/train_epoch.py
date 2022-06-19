@@ -6,6 +6,8 @@ from torch.optim import Optimizer
 import numpy as np
 import timeit
 
+from tools import ClassificationMetrics
+
 
 def train_epoch(network: Module, dataloader: DataLoader, optimizer: Optimizer, criterion: Module, **kwargs):
     start = timeit.default_timer()
@@ -25,13 +27,12 @@ def train_epoch(network: Module, dataloader: DataLoader, optimizer: Optimizer, c
 
         network.eval()
         _, preds = torch.max(outputs, 1)
-        total = labels.size(0)
-        correct = (preds == labels).sum().item()
+        metrics = ClassificationMetrics(labels, preds)
         if batch_idx % (num_batches // num_prints) == 0:
             print(
                 f"[Batch {batch_idx:{digits}d}/{num_batches}] "
                 f"Loss: {loss.item():.4f}, "
-                f"Accuracy: {correct / total:.2%}")
+                f"Accuracy: {metrics.accuracy:.2%}")
 
     end = timeit.default_timer()
     print(f"Time spent: {end - start:.2f}s | {(end - start) / num_batches:.2f}s/batch")

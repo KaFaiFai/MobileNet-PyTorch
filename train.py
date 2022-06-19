@@ -19,16 +19,16 @@ def train():
     lr = 3e-4
 
     # experiment settings
-    data = "cifar10"
+    data = "cifar10"  # ["dogs", "mnist", "cifar10", "imagenet"]
     model_type = "mobile_net"  # ["mobile_net", "lenet"]
     device = "cuda" if torch.cuda.is_available() else "cpu"
     num_workers = 4
     num_epochs = 50
     save_step = 5
     out_directory = r".\out"
-    pretrained_model_path = r"C:\_Project\Pycharm Projects\MobileNet\out\0000\network_mobile_net_0005.pth"  # r"C:\_Project\Pycharm Projects\MobileNet\out\0001\network_0030.pth"
+    pretrained_model_path = r"C:\_Project\Pycharm Projects\MobileNet\out\0004\network_mobile_net_0010.pth"  # r"C:\_Project\Pycharm Projects\MobileNet\out\0001\network_0030.pth"
 
-    assert data in ["dogs", "mnist", "cifar10"]
+    assert data in ["dogs", "mnist", "cifar10", "imagenet"]
     assert model_type in ["mobile_net", "lenet"]
 
     # training configs
@@ -48,8 +48,11 @@ def train():
         train_dataset = MNISTDataset(root=r"D:\_Dataset", is_train=True)
         test_dataset = MNISTDataset(root=r"D:\_Dataset", is_train=False)
     elif data == "cifar10":
-        train_dataset = CIFAR10Dataset(root=r"D:\_Dataset", is_train=True)
-        test_dataset = CIFAR10Dataset(root=r"D:\_Dataset", is_train=False)
+        train_dataset = CIFAR10Dataset(root=r"D:\_Dataset\CIFAR10", is_train=True)
+        test_dataset = CIFAR10Dataset(root=r"D:\_Dataset\CIFAR10", is_train=False)
+    elif data == "imagenet":
+        train_dataset = ImageNetDataset(root=r"D:\_Dataset\ImageNet_2012", is_train=True)
+        test_dataset = ImageNetDataset(root=r"D:\_Dataset\ImageNet_2012", is_train=False)
 
     # set up dataloader, model, optimizer, criterion
     train_dataloader = DataLoader(train_dataset, batch_size=batch_size, shuffle=True, num_workers=num_workers)
@@ -70,8 +73,8 @@ def train():
 
     # training loop
     for epoch in range(from_epoch, num_epochs):
-        print(f"{'-' * 10} Epoch {epoch:2d}/{num_epochs} {'-' * 10}")
-        train_epoch(network, train_dataloader, optimizer, criterion, **c)
+        # print(f"{'-' * 10} Epoch {epoch:2d}/{num_epochs} {'-' * 10}")
+        # train_epoch(network, train_dataloader, optimizer, criterion, **c)
 
         print(f"{'-' * 5} Validation result {'-' * 5}")
         validate(network, test_dataloader, criterion, **c)
