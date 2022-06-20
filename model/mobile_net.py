@@ -1,6 +1,6 @@
 import torch
 from torch import nn
-import numpy as np
+from torchsummary import summary
 
 
 class DepthWiseConv(nn.Module):
@@ -8,7 +8,7 @@ class DepthWiseConv(nn.Module):
         super().__init__()
         padding = (kernel_size - 1) // 2
         self.conv = nn.Conv2d(num_channels, num_channels, kernel_size=kernel_size, padding=padding, stride=stride,
-                              groups=num_channels)
+                              groups=num_channels, bias=False)
 
     def forward(self, x):
         # (B, C, H, W) -> (B, C, H//stride, W//stride)
@@ -19,7 +19,7 @@ class DepthWiseConv(nn.Module):
 class PointWiseConv(nn.Module):
     def __init__(self, in_channels, out_channels):
         super().__init__()
-        self.conv = nn.Conv2d(in_channels, out_channels, kernel_size=1)
+        self.conv = nn.Conv2d(in_channels, out_channels, kernel_size=1, bias=False)
 
     def forward(self, x):
         # (B, Cin, H, W) -> (B, Cout, H, W)
@@ -47,8 +47,8 @@ class SeparableConv(nn.Module):
 class MobileNet(nn.Module):
     def __init__(self, num_labels, alpha=1, input_res=224):
         super().__init__()
-        assert 0 < alpha <= 1  # width multiplier within (0, 1]
-        assert 0 < input_res <= 224  # input resolution within (0, 224]
+        assert 0 < alpha <= 1, "width multiplier within (0, 1]"
+        assert 32 < input_res <= 224, "input resolution within (32, 224]"
 
         num_channels = [int(c * alpha) for c in (32, 64, 128, 128, 256, 256, 512, 512, 512, 512, 512, 512, 1024, 1024)]
         resolutions = [int(r * input_res / 224) for r in (112, 112, 56, 56, 28, 28, 14, 14, 14, 14, 14, 14, 7, 7)]
@@ -56,7 +56,9 @@ class MobileNet(nn.Module):
 
         self.initial = nn.Sequential(
             nn.AdaptiveAvgPool2d(input_res),
-            nn.Conv2d(3, num_channels[0], kernel_size=3, stride=2, padding=1),
+            nn.Conv2d(3, num_channels[0], kernel_size=3, stride=2, padding=1, bias=False),
+            nn.BatchNorm2d(num_channels[0]),
+            nn.ReLU(),
         )
 
         separable_convs = []
@@ -69,7 +71,9 @@ class MobileNet(nn.Module):
         self.final = nn.Sequential(
             nn.AvgPool2d(resolutions[-1]),
             nn.Flatten(),
+            nn.Dropout(p=0.001),
             nn.Linear(num_channels[-1], num_labels),
+            # no softmax
         )
 
     def forward(self, x):
@@ -83,12 +87,7 @@ class MobileNet(nn.Module):
 
 def test():
     net = MobileNet(1000)
-    data = torch.randn(5, 3, 512, 244)
-    print(data.shape)
-
-    net.eval()
-    out = net(data)
-    print(out.shape)
+    summary(net, (3, 224, 224))
 
 
 if __name__ == '__main__':
