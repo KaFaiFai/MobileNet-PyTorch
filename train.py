@@ -28,14 +28,14 @@ def train():
     num_epochs = 50
     save_step = 1
     out_directory = r".\out"
-    pretrained_model_path = None  # r"C:\_Project\Pycharm Projects\MobileNet\out\0001\network_0030.pth"
+    pretrained_model_path = r"C:\_Project\Pycharm Projects\MobileNet\pretrained\mobile_net-a100-r224-c1000-e0000.pth"  # r"C:\_Project\Pycharm Projects\MobileNet\out\0001\network_0030.pth"
 
     assert data in ["dogs", "mnist", "cifar10", "imagenet"]
     assert model_type in ["mobile_net", "lenet"]
 
     # training configs
     c = dict()
-    c["num_prints"] = 1000
+    c["num_prints"] = 10000
     c["device"] = device
 
     out_path = Path(out_directory) / f"{find_next_id(Path(out_directory)):04d}"
