@@ -13,8 +13,8 @@ def train_epoch(network: Module, dataloader: DataLoader, optimizer: Optimizer, c
     start = timeit.default_timer()
     device, num_prints = kwargs["device"], kwargs["num_prints"]
     num_batches = len(dataloader)
-
     digits = int(np.log10(num_batches)) + 1  # for print
+    
     for batch_idx, (images, labels) in enumerate(dataloader):
         images, labels = images.to(device), labels.to(device)
 
