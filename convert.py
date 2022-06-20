@@ -198,11 +198,6 @@ def peek_tensorflow_state():
     predictions = model(x)
     print(predictions)
 
-    # layer = model.layers[1]
-    # kernel = layer.get_weights()[0]
-    # print(kernel.shape)
-    # print(np.transpose(kernel, (2, 3, 0, 1)).shape)
-
     # for layer in model.layers:
     #     if len(layer.get_weights()) > 0:
     #         for t, w in zip(layer.weights, layer.get_weights()):
