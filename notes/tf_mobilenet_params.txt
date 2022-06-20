@@ -1,0 +1,91 @@
+input_1                       :
+conv1                         : kernel:0(3, 3, 3, 32)
+conv1_bn                      : gamma:0(32,) beta:0(32,) moving_mean:0(32,) moving_variance:0(32,)
+conv1_relu                    :
+conv_dw_1                     : depthwise_kernel:0(3, 3, 32, 1)
+conv_dw_1_bn                  : gamma:0(32,) beta:0(32,) moving_mean:0(32,) moving_variance:0(32,)
+conv_dw_1_relu                :
+conv_pw_1                     : kernel:0(1, 1, 32, 64)
+conv_pw_1_bn                  : gamma:0(64,) beta:0(64,) moving_mean:0(64,) moving_variance:0(64,)
+conv_pw_1_relu                :
+conv_pad_2                    :
+conv_dw_2                     : depthwise_kernel:0(3, 3, 64, 1)
+conv_dw_2_bn                  : gamma:0(64,) beta:0(64,) moving_mean:0(64,) moving_variance:0(64,)
+conv_dw_2_relu                :
+conv_pw_2                     : kernel:0(1, 1, 64, 128)
+conv_pw_2_bn                  : gamma:0(128,) beta:0(128,) moving_mean:0(128,) moving_variance:0(128,)
+conv_pw_2_relu                :
+conv_dw_3                     : depthwise_kernel:0(3, 3, 128, 1)
+conv_dw_3_bn                  : gamma:0(128,) beta:0(128,) moving_mean:0(128,) moving_variance:0(128,)
+conv_dw_3_relu                :
+conv_pw_3                     : kernel:0(1, 1, 128, 128)
+conv_pw_3_bn                  : gamma:0(128,) beta:0(128,) moving_mean:0(128,) moving_variance:0(128,)
+conv_pw_3_relu                :
+conv_pad_4                    :
+conv_dw_4                     : depthwise_kernel:0(3, 3, 128, 1)
+conv_dw_4_bn                  : gamma:0(128,) beta:0(128,) moving_mean:0(128,) moving_variance:0(128,)
+conv_dw_4_relu                :
+conv_pw_4                     : kernel:0(1, 1, 128, 256)
+conv_pw_4_bn                  : gamma:0(256,) beta:0(256,) moving_mean:0(256,) moving_variance:0(256,)
+conv_pw_4_relu                :
+conv_dw_5                     : depthwise_kernel:0(3, 3, 256, 1)
+conv_dw_5_bn                  : gamma:0(256,) beta:0(256,) moving_mean:0(256,) moving_variance:0(256,)
+conv_dw_5_relu                :
+conv_pw_5                     : kernel:0(1, 1, 256, 256)
+conv_pw_5_bn                  : gamma:0(256,) beta:0(256,) moving_mean:0(256,) moving_variance:0(256,)
+conv_pw_5_relu                :
+conv_pad_6                    :
+conv_dw_6                     : depthwise_kernel:0(3, 3, 256, 1)
+conv_dw_6_bn                  : gamma:0(256,) beta:0(256,) moving_mean:0(256,) moving_variance:0(256,)
+conv_dw_6_relu                :
+conv_pw_6                     : kernel:0(1, 1, 256, 512)
+conv_pw_6_bn                  : gamma:0(512,) beta:0(512,) moving_mean:0(512,) moving_variance:0(512,)
+conv_pw_6_relu                :
+conv_dw_7                     : depthwise_kernel:0(3, 3, 512, 1)
+conv_dw_7_bn                  : gamma:0(512,) beta:0(512,) moving_mean:0(512,) moving_variance:0(512,)
+conv_dw_7_relu                :
+conv_pw_7                     : kernel:0(1, 1, 512, 512)
+conv_pw_7_bn                  : gamma:0(512,) beta:0(512,) moving_mean:0(512,) moving_variance:0(512,)
+conv_pw_7_relu                :
+conv_dw_8                     : depthwise_kernel:0(3, 3, 512, 1)
+conv_dw_8_bn                  : gamma:0(512,) beta:0(512,) moving_mean:0(512,) moving_variance:0(512,)
+conv_dw_8_relu                :
+conv_pw_8                     : kernel:0(1, 1, 512, 512)
+conv_pw_8_bn                  : gamma:0(512,) beta:0(512,) moving_mean:0(512,) moving_variance:0(512,)
+conv_pw_8_relu                :
+conv_dw_9                     : depthwise_kernel:0(3, 3, 512, 1)
+conv_dw_9_bn                  : gamma:0(512,) beta:0(512,) moving_mean:0(512,) moving_variance:0(512,)
+conv_dw_9_relu                :
+conv_pw_9                     : kernel:0(1, 1, 512, 512)
+conv_pw_9_bn                  : gamma:0(512,) beta:0(512,) moving_mean:0(512,) moving_variance:0(512,)
+conv_pw_9_relu                :
+conv_dw_10                    : depthwise_kernel:0(3, 3, 512, 1)
+conv_dw_10_bn                 : gamma:0(512,) beta:0(512,) moving_mean:0(512,) moving_variance:0(512,)
+conv_dw_10_relu               :
+conv_pw_10                    : kernel:0(1, 1, 512, 512)
+conv_pw_10_bn                 : gamma:0(512,) beta:0(512,) moving_mean:0(512,) moving_variance:0(512,)
+conv_pw_10_relu               :
+conv_dw_11                    : depthwise_kernel:0(3, 3, 512, 1)
+conv_dw_11_bn                 : gamma:0(512,) beta:0(512,) moving_mean:0(512,) moving_variance:0(512,)
+conv_dw_11_relu               :
+conv_pw_11                    : kernel:0(1, 1, 512, 512)
+conv_pw_11_bn                 : gamma:0(512,) beta:0(512,) moving_mean:0(512,) moving_variance:0(512,)
+conv_pw_11_relu               :
+conv_pad_12                   :
+conv_dw_12                    : depthwise_kernel:0(3, 3, 512, 1)
+conv_dw_12_bn                 : gamma:0(512,) beta:0(512,) moving_mean:0(512,) moving_variance:0(512,)
+conv_dw_12_relu               :
+conv_pw_12                    : kernel:0(1, 1, 512, 1024)
+conv_pw_12_bn                 : gamma:0(1024,) beta:0(1024,) moving_mean:0(1024,) moving_variance:0(1024,)
+conv_pw_12_relu               :
+conv_dw_13                    : depthwise_kernel:0(3, 3, 1024, 1)
+conv_dw_13_bn                 : gamma:0(1024,) beta:0(1024,) moving_mean:0(1024,) moving_variance:0(1024,)
+conv_dw_13_relu               :
+conv_pw_13                    : kernel:0(1, 1, 1024, 1024)
+conv_pw_13_bn                 : gamma:0(1024,) beta:0(1024,) moving_mean:0(1024,) moving_variance:0(1024,)
+conv_pw_13_relu               :
+global_average_pooling2d      :
+dropout                       :
+conv_preds                    : kernel:0(1, 1, 1024, 1000) bias:0(1000,)
+reshape_2                     :
+predictions                   :
