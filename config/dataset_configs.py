@@ -13,7 +13,7 @@ DATASETS = {
         "class": CIFAR10Dataset,
         "train_root": r"D:\_Dataset\CIFAR10",
         "test_root": r"D:\_Dataset\CIFAR10",
-    }, "imagenet": {
+    }, "image-net": {
         "class": ImageNetDataset,
         "train_root": r"D:\_Dataset\ImageNet_2012",
         "test_root": r"D:\_Dataset\ImageNet_2012",
