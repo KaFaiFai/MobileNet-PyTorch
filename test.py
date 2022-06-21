@@ -2,7 +2,6 @@
 original preprocessing method is same as Inception, which takes 4×3×6×2 = 144 crops per image
 we only take
 """
-from pathlib import Path
 
 import torch
 from torch import nn
@@ -11,8 +10,8 @@ import torchvision.models as models
 
 from model import *
 from dataset import *
-from script import validate
-from script.utils import find_next_id, be_deterministic
+from script import test_loop
+from script.utils import be_deterministic
 
 be_deterministic()
 
@@ -26,18 +25,15 @@ def test():
     model_type = "mobile_net"  # ["mobile_net", "lenet"]
     device = "cuda" if torch.cuda.is_available() else "cpu"
     num_workers = 4
-    out_directory = r".\out"
-    pretrained_model_path = r"C:\_Project\Pycharm Projects\MobileNet\pretrained\wjc-mobilenet-a100-r224-c1000-e0000.pth"  # r"C:\_Project\Pycharm Projects\MobileNet\out\0001\network_0030.pth"
+    pretrained_model_path = r"C:\_Project\Pycharm Projects\MobileNet\pretrained\wjc-mobilenet-a100-r224-c1000-e0000.pth"
 
     assert data in ["dogs", "mnist", "cifar10", "imagenet"]
     assert model_type in ["mobile_net", "lenet"]
 
     # training configs
     c = dict()
-    c["num_prints"] = 20
+    c["test_print_step"] = 20
     c["device"] = device
-
-    out_path = Path(out_directory) / f"{find_next_id(Path(out_directory)):04d}"
 
     # select dataset
     test_dataset = None
@@ -68,7 +64,7 @@ def test():
 
     # testing loop
     print(f"{'-' * 5} Test result {'-' * 5}")
-    validate(network, test_dataloader, criterion, **c)
+    test_loop(network, test_dataloader, criterion, **c)
 
 
 if __name__ == '__main__':

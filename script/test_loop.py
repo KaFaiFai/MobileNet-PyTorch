@@ -6,15 +6,14 @@ from torch.utils.data import DataLoader
 from tools import ClassificationMetrics
 
 
-def validate(network: Module, dataloader: DataLoader, criterion: Module, **kwargs):
+def test_loop(network: Module, dataloader: DataLoader, criterion: Module, **kwargs):
     device = kwargs["device"]
-    print_step = kwargs["print_step"]
+    test_print_step = kwargs["test_print_step"]
     num_batches = len(dataloader)
     digits = int(np.log10(num_batches)) + 1  # for print
 
     total_loss = 0  # BCE loss
     all_labels = []
-    all_preds = []
     all_outputs = []
     with torch.no_grad():
         for batch_idx, (images, labels) in enumerate(dataloader):
@@ -26,13 +25,11 @@ def validate(network: Module, dataloader: DataLoader, criterion: Module, **kwarg
 
             total_loss += loss.item()
 
-            _, preds = torch.max(outputs, 1)
             all_labels += labels.tolist()
-            all_preds += preds.tolist()
             all_outputs += outputs.tolist()
 
-            metrics = ClassificationMetrics(labels, preds)
-            if print_step is not None and batch_idx % print_step == 0:
+            metrics = ClassificationMetrics(labels, outputs)
+            if test_print_step is not None and batch_idx % test_print_step == 0:
                 print(
                     f"[Batch {batch_idx:{digits}d}/{num_batches}] "
                     f"Loss: {loss.item():.4f}, "

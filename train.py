@@ -7,7 +7,7 @@ from torch.utils.data import DataLoader
 
 from model import *
 from dataset import *
-from script import train_epoch, validate
+from script import train_epoch, test_loop
 from script.utils import find_next_id, be_deterministic
 
 be_deterministic()
@@ -21,21 +21,22 @@ def train():
     input_resolution = 224
 
     # experiment settings
-    data = "imagenet"  # ["dogs", "mnist", "cifar10", "imagenet"]
+    data = "cifar10"  # ["dogs", "mnist", "cifar10", "imagenet"]
     model_type = "mobile_net"  # ["mobile_net", "lenet"]
     device = "cuda" if torch.cuda.is_available() else "cpu"
     num_workers = 4
     num_epochs = 50
     save_step = 1
     out_directory = r".\out"
-    pretrained_model_path = r"C:\_Project\Pycharm Projects\MobileNet\pretrained\mobile_net-a100-r224-c1000-e0000.pth"  # r"C:\_Project\Pycharm Projects\MobileNet\out\0001\network_0030.pth"
+    pretrained_model_path = None
+    # pretrained_model_path = r"C:\_Project\Pycharm Projects\MobileNet\pretrained\wjc-mobilenet-a100-r224-c1000-e0000.pth"
 
     assert data in ["dogs", "mnist", "cifar10", "imagenet"]
     assert model_type in ["mobile_net", "lenet"]
 
     # training configs
     c = dict()
-    c["num_prints"] = 10000
+    c["train_print_step"] = 100
     c["device"] = device
 
     out_path = Path(out_directory) / f"{find_next_id(Path(out_directory)):04d}"
@@ -80,7 +81,7 @@ def train():
         train_epoch(network, train_dataloader, optimizer, criterion, **c)
 
         print(f"{'-' * 5} Validation result {'-' * 5}")
-        validate(network, test_dataloader, criterion, **c)
+        test_loop(network, test_dataloader, criterion, **c)
 
         if epoch % save_step == 0:
             out_path.mkdir(exist_ok=True, parents=True)

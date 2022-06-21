@@ -13,7 +13,7 @@ def load_dataset():
     # dataset = MNISTDataset(root=r"D:\_Dataset", is_train=True)
     # dataset = CIFAR10Dataset(root=r"D:\_Dataset\CIFAR10", is_train=True)
     dataset = ImageNetDataset(root=r"D:\_Dataset\ImageNet_2012", is_train=False)
-    num_prints = 100
+    print_step = 100
     batch_size = 64
 
     dataloader = DataLoader(dataset, batch_size=batch_size, shuffle=False)
@@ -24,7 +24,7 @@ def load_dataset():
 
     try:
         for batch_idx, _ in enumerate(dataloader):
-            if batch_idx % (len(dataloader) // num_prints) == 0:
+            if batch_idx % print_step == 0:
                 print(f"Loading [Batch {batch_idx:4d}/{len(dataloader)}] ...")
             last_batch = batch_idx
             if batch_idx == end_batch:
