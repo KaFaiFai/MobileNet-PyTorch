@@ -8,13 +8,14 @@ from tools import ClassificationMetrics
 
 def validate(network: Module, dataloader: DataLoader, criterion: Module, **kwargs):
     device = kwargs["device"]
-    num_prints = kwargs["num_prints"]
+    print_step = kwargs["print_step"]
     num_batches = len(dataloader)
     digits = int(np.log10(num_batches)) + 1  # for print
 
     total_loss = 0  # BCE loss
     all_labels = []
     all_preds = []
+    all_outputs = []
     with torch.no_grad():
         for batch_idx, (images, labels) in enumerate(dataloader):
             images, labels = images.to(device), labels.to(device)
@@ -28,9 +29,10 @@ def validate(network: Module, dataloader: DataLoader, criterion: Module, **kwarg
             _, preds = torch.max(outputs, 1)
             all_labels += labels.tolist()
             all_preds += preds.tolist()
+            all_outputs += outputs.tolist()
 
             metrics = ClassificationMetrics(labels, preds)
-            if num_prints is not None and batch_idx % (num_batches // num_prints) == 0:
+            if print_step is not None and batch_idx % print_step == 0:
                 print(
                     f"[Batch {batch_idx:{digits}d}/{num_batches}] "
                     f"Loss: {loss.item():.4f}, "
@@ -38,5 +40,5 @@ def validate(network: Module, dataloader: DataLoader, criterion: Module, **kwarg
 
     total_loss /= len(dataloader)
     print(f"Total test data: {len(all_labels)}, Loss: {total_loss:.4f}")
-    metrics = ClassificationMetrics(all_labels, all_preds)
+    metrics = ClassificationMetrics(all_labels, all_outputs)
     metrics.print_report()
