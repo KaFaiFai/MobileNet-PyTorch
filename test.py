@@ -7,6 +7,7 @@ import torch
 from torch import nn
 from torch.utils.data import DataLoader
 import torchvision.models as models
+from collections import defaultdict
 
 from model import *
 from dataset import *
@@ -31,7 +32,7 @@ def test():
     assert model_type in ["mobile_net", "lenet"]
 
     # training configs
-    c = dict()
+    c = defaultdict(lambda: None)
     c["print_step_test"] = 20
     c["device"] = device
 

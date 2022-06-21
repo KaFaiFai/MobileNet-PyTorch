@@ -1,5 +1,6 @@
 from pathlib import Path
 import argparse
+from collections import defaultdict
 
 import torch
 from torch import optim
@@ -56,7 +57,7 @@ def train(configs):
     assert model_type in MODELS.keys()
 
     # training configs
-    c = dict()
+    c = defaultdict(lambda: None)
     c["print_step_train"] = configs.print_step
     c["device"] = device
 
