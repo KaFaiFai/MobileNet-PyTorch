@@ -11,7 +11,7 @@ from tools import ClassificationMetrics
 
 def train_epoch(network: Module, dataloader: DataLoader, optimizer: Optimizer, criterion: Module, **kwargs):
     start = timeit.default_timer()
-    device, train_print_step = kwargs["device"], kwargs["train_print_step"]
+    device, print_step_train = kwargs["device"], kwargs["print_step_train"]
     num_batches = len(dataloader)
     digits = int(np.log10(num_batches)) + 1  # for print
 
@@ -27,7 +27,7 @@ def train_epoch(network: Module, dataloader: DataLoader, optimizer: Optimizer, c
 
         network.eval()
         metrics = ClassificationMetrics(labels, outputs)
-        if batch_idx % train_print_step == 0:
+        if print_step_train is not None and batch_idx % print_step_train == 0:
             print(
                 f"[Batch {batch_idx:{digits}d}/{num_batches}] "
                 f"Loss: {loss.item():.4f}, "

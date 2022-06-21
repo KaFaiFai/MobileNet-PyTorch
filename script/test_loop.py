@@ -8,7 +8,7 @@ from tools import ClassificationMetrics
 
 def test_loop(network: Module, dataloader: DataLoader, criterion: Module, **kwargs):
     device = kwargs["device"]
-    test_print_step = kwargs["test_print_step"]
+    print_step_test = kwargs["print_step_test"]
     num_batches = len(dataloader)
     digits = int(np.log10(num_batches)) + 1  # for print
 
@@ -29,7 +29,7 @@ def test_loop(network: Module, dataloader: DataLoader, criterion: Module, **kwar
             all_outputs += outputs.tolist()
 
             metrics = ClassificationMetrics(labels, outputs)
-            if test_print_step is not None and batch_idx % test_print_step == 0:
+            if print_step_test is not None and batch_idx % print_step_test == 0:
                 print(
                     f"[Batch {batch_idx:{digits}d}/{num_batches}] "
                     f"Loss: {loss.item():.4f}, "

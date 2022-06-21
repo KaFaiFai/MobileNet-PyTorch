@@ -1,6 +1,6 @@
 """
 original preprocessing method is same as Inception, which takes 4×3×6×2 = 144 crops per image
-we only take
+we only take 1 center crop after resizing
 """
 
 import torch
@@ -21,7 +21,7 @@ def test():
     batch_size = 64
 
     # experiment settings
-    data = "imagenet"  # ["dogs", "mnist", "cifar10", "imagenet"]
+    data = "imagenet"  # ["stanford-dogs", "mnist", "cifar10", "imagenet"]
     model_type = "mobile_net"  # ["mobile_net", "lenet"]
     device = "cuda" if torch.cuda.is_available() else "cpu"
     num_workers = 4
@@ -32,12 +32,12 @@ def test():
 
     # training configs
     c = dict()
-    c["test_print_step"] = 20
+    c["print_step_test"] = 20
     c["device"] = device
 
     # select dataset
     test_dataset = None
-    if data == "dogs":
+    if data == "stanford-dogs":
         test_dataset = DogsDataset(root=r"D:\_Dataset\Stanford Dogs", is_train=False)
     elif data == "mnist":
         test_dataset = MNISTDataset(root=r"D:\_Dataset", is_train=False)
