@@ -77,7 +77,7 @@ class ClassificationMetrics:
             print(f"Recall:   {self.recall:.4f} | F1 score:  {self.f1_score:.4f}")
         else:
             print(f"Top 1 Accuracy: {self.accuracy:2.2%} | Top 5 Accuracy: {self.topK_accuracy(k=5):2.2%}")
-            print(f"Precision: {self.precision:.4f} | Recall:   {self.recall:.4f} | F1 score:  {self.f1_score:.4f}")
+            print(f"Precision: {self.precision:.4f} | Recall: {self.recall:.4f} | F1 score: {self.f1_score:.4f}")
 
 
 def test():
