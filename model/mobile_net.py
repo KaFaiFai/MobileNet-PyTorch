@@ -55,7 +55,7 @@ class MobileNet(nn.Module):
         assert len(num_channels) == len(resolutions)
 
         self.initial = nn.Sequential(
-            # nn.AdaptiveAvgPool2d(input_res),
+            nn.AdaptiveAvgPool2d(input_res),
             nn.Conv2d(3, num_channels[0], kernel_size=3, stride=2, padding=1, bias=False),
             nn.BatchNorm2d(num_channels[0]),
             nn.ReLU(),

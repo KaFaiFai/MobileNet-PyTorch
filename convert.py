@@ -102,15 +102,15 @@ class ConverterWJC852456:
         if self.input_resolution != 224:
             raise Exception("Not implemented for input_resolution != 224")
 
-        state = torch.load(r"C:\_Project\Pycharm Projects\MobileNet\pretrained\mobilenet_sgd_68.848.pth.tar")
+        state = torch.load(r"C:\_Project\Pycharm Projects\MobileNet\pretrained\wjc852456\mobilenet_sgd_68.848.pth.tar")
         self._model = state["state_dict"]
 
     def to_pytorch_state(self):
         self._state_dict = dict()
 
         # initial
-        self._wjc2pt_conv("module.model.0.0", "initial.0")
-        self._wjc2pt_bn("module.model.0.1", "initial.1")
+        self._wjc2pt_conv("module.model.0.0", "initial.1")
+        self._wjc2pt_bn("module.model.0.1", "initial.2")
 
         # separable_convs
         for wjc_idx, pt_idx in zip(range(1, 14), range(13)):
@@ -122,8 +122,8 @@ class ConverterWJC852456:
         # final
         self._wjc2pt_fc("module.fc", "final.2")
 
-        for param_tensor in self._state_dict:
-            print(f"{param_tensor:<45}: {self._state_dict[param_tensor].size()}")
+        # for param_tensor in self._state_dict:
+        #     print(f"{param_tensor:<45}: {self._state_dict[param_tensor].size()}")
 
     def save_to(self, out_dir):
         state = {"epoch": -1, "alpha": self.alpha, "input_resolution": self.input_resolution,
