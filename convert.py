@@ -96,16 +96,18 @@ class ConverterWJC852456:
         self.input_resolution = 224
         self.num_class = 1000
         self._model = None
-        self._state_dict = dict()
+        self._state_dict = None
 
-    def load_wjc852456_model(self):
+    def load_wjc852456_model(self, model_path):
         if self.input_resolution != 224:
             raise Exception("Not implemented for input_resolution != 224")
 
-        state = torch.load(r"C:\_Project\Pycharm Projects\MobileNet\pretrained\wjc852456\mobilenet_sgd_68.848.pth.tar")
+        state = torch.load(model_path)
         self._model = state["state_dict"]
 
     def to_pytorch_state(self):
+        assert self._model is not None, "model is not loaded yet. Please call load_wjc852456_model() first"
+
         self._state_dict = dict()
 
         # initial
@@ -125,14 +127,16 @@ class ConverterWJC852456:
         # for param_tensor in self._state_dict:
         #     print(f"{param_tensor:<45}: {self._state_dict[param_tensor].size()}")
 
-    def save_to(self, out_dir):
+    def save_to(self, out_dir, name="wjc"):
+        assert self._state_dict is not None, "state is not loaded yet. Please call to_pytorch_state() first"
+
         state = {"epoch": -1, "alpha": self.alpha, "input_resolution": self.input_resolution,
                  "num_class": self.num_class, "state_dict": self._state_dict}
         out_path = Path(out_dir)
         out_path.mkdir(exist_ok=True, parents=True)
-        save_to = out_path / f"wjc-mobilenet-a{self.alpha * 100:.0f}-r{self.input_resolution:.0f}" \
-                             f"-c{self.num_class}-e{0:04d}.pth"
-        torch.save(state, str(save_to))
+        self.filename = out_path / f"{name}-mobilenet-a{self.alpha * 100:.0f}-r{self.input_resolution:.0f}" \
+                                   f"-c{self.num_class}-e{0:04d}.pth"
+        torch.save(state, str(self.filename))
 
     def _wjc2pt_conv(self, wjc_layer: str, pt_layer: str):
         self._state_dict[f"{pt_layer}.weight"] = self._model[f"{wjc_layer}.weight"]
@@ -239,8 +243,17 @@ if __name__ == '__main__':
     # converter.build_tf_model()
     # converter.to_pytorch_state()
     # converter.save_to(r".\pretrained")
+    model_path = r".\pretrained\wjc852456\mobilenet_sgd_rmsprop_69.526.tar"
+    out_dir = r".\pretrained"
+    name = "wjc2_rmsprop"
 
     converter = ConverterWJC852456()
-    converter.load_wjc852456_model()
+
+    print(f"loading wjc model in {model_path} ...")
+    converter.load_wjc852456_model(model_path)
+
+    print(f"converting to pytorch state dict ...")
     converter.to_pytorch_state()
-    converter.save_to(r".\pretrained")
+
+    converter.save_to(out_dir, name=name)
+    print(f"model file saved to {converter.filename}")
