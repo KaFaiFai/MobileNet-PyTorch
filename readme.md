@@ -1,3 +1,8 @@
+# MobileNet in PyTorch
+
+## Main contribution
+User can convert pretrained models **from official TensorFlow implementation** and many other versions to this **pytorch implementation**
+## Examples
 Pretrained model: https://drive.google.com/file/d/1gFH0c6YregiiFctTFBIjr_7ffHZIUfxp/view?usp=sharing  
 Converted from official TensorFlow  
 Top 1 Accuracy: 64.21% | Top 5 Accuracy: 85.12%  
