@@ -14,10 +14,11 @@ from model import MobileNet
 
 class ConverterOfficial:
     def __init__(self, alpha=1.0, input_resolution=224, num_class=1000):
-        raise Exception("Not implemented")
+        # raise Exception("Not implemented")
         self.alpha = alpha
         self.input_resolution = input_resolution
         self.num_class = num_class
+        self.filename = None
         self._model = None
         self._state_dict = dict()
 
@@ -39,11 +40,13 @@ class ConverterOfficial:
         )
 
     def to_pytorch_state(self):
+        assert self._model is not None, "model is not loaded yet. Please call build_tf_model() first"
+
         self._state_dict = dict()
 
         # initial
-        self._tf2pt_conv("conv1", "initial.0")
-        self._tf2pt_bn("conv1_bn", "initial.1")
+        self._tf2pt_conv("conv1", "initial.1")
+        self._tf2pt_bn("conv1_bn", "initial.2")
 
         # separable_convs
         for tf_idx, pt_idx in zip(range(1, 14), range(13)):
@@ -58,14 +61,16 @@ class ConverterOfficial:
         # for param_tensor in self._state_dict:
         #     print(f"{param_tensor:<45}: {self._state_dict[param_tensor].size()}")
 
-    def save_to(self, out_dir):
+    def save_to(self, out_dir, name="tf"):
+        assert self._state_dict is not None, "state is not loaded yet. Please call to_pytorch_state() first"
+
         state = {"epoch": -1, "alpha": self.alpha, "input_resolution": self.input_resolution,
                  "num_class": self.num_class, "state_dict": self._state_dict}
         out_path = Path(out_dir)
         out_path.mkdir(exist_ok=True, parents=True)
-        save_to = out_path / f"mobile_net-a{self.alpha * 100:.0f}-r{self.input_resolution:.0f}" \
-                             f"-c{self.num_class}-e{0:04d}.pth"
-        torch.save(state, str(save_to))
+        self.filename = out_path / f"{name}-mobilenet-a{self.alpha * 100:.0f}-r{self.input_resolution:.0f}" \
+                                   f"-c{self.num_class}-e{0:04d}.pth"
+        torch.save(state, str(self.filename))
 
     def _tf2pt_conv(self, tf_layer: str, pt_layer: str, has_bias: bool = False):
         # conv2d kernel shape: pytorch(OUT_C, IN_C, H, W), tensorflow(H, W, IN_C, OUT_C)
@@ -95,6 +100,7 @@ class ConverterWJC852456:
         self.alpha = 1.0
         self.input_resolution = 224
         self.num_class = 1000
+        self.filename = None
         self._model = None
         self._state_dict = None
 
@@ -221,7 +227,7 @@ def peek_tensorflow_state():
     # print(model.get)
 
 
-if __name__ == '__main__':
+def main():
     # model = tf.keras.applications.mobilenet.MobileNet(
     #     input_shape=None,
     #     alpha=1.0,
@@ -239,21 +245,26 @@ if __name__ == '__main__':
     # peek_tensorflow_state()
     # peek_pytorch_state()
 
-    # converter = ConverterOfficial()
-    # converter.build_tf_model()
-    # converter.to_pytorch_state()
-    # converter.save_to(r".\pretrained")
-    model_path = r".\pretrained\wjc852456\mobilenet_sgd_rmsprop_69.526.tar"
-    out_dir = r".\pretrained"
-    name = "wjc2_rmsprop"
-
-    converter = ConverterWJC852456()
-
-    print(f"loading wjc model in {model_path} ...")
-    converter.load_wjc852456_model(model_path)
-
-    print(f"converting to pytorch state dict ...")
+    converter = ConverterOfficial()
+    converter.build_tf_model()
     converter.to_pytorch_state()
+    converter.save_to(r".\pretrained")
 
-    converter.save_to(out_dir, name=name)
-    print(f"model file saved to {converter.filename}")
+    # model_path = r".\pretrained\wjc852456\mobilenet_sgd_rmsprop_69.526.tar"
+    # out_dir = r".\pretrained"
+    # name = "wjc2_rmsprop"
+    #
+    # converter = ConverterWJC852456()
+    #
+    # print(f"loading wjc model in {model_path} ...")
+    # converter.load_wjc852456_model(model_path)
+    #
+    # print(f"converting to pytorch state dict ...")
+    # converter.to_pytorch_state()
+    #
+    # converter.save_to(out_dir, name=name)
+    # print(f"model file saved to {converter.filename}")
+
+
+if __name__ == '__main__':
+    main()

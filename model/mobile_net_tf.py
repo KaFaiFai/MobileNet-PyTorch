@@ -32,10 +32,10 @@ class SeparableConv(nn.Module):
         super().__init__()
         self.dw_conv = DepthWiseConv(in_channels, stride=downscale)
         self.bn1 = nn.BatchNorm2d(in_channels)
-        self.relu1 = nn.ReLU()
+        self.relu1 = nn.ReLU6()
         self.pw_conv = PointWiseConv(in_channels, out_channels)
         self.bn2 = nn.BatchNorm2d(out_channels)
-        self.relu2 = nn.ReLU()
+        self.relu2 = nn.ReLU6()
 
     def forward(self, x):
         # (B, Cin, H, W) -> (B, Cout, H/downscale, W/downscale)
@@ -44,7 +44,7 @@ class SeparableConv(nn.Module):
         return x
 
 
-class MobileNet(nn.Module):
+class MobileNetTF(nn.Module):
     def __init__(self, num_labels, alpha=1, input_res=224):
         super().__init__()
         assert 0 < alpha <= 1, "width multiplier within (0, 1]"
@@ -58,7 +58,7 @@ class MobileNet(nn.Module):
             nn.AdaptiveAvgPool2d(input_res),
             nn.Conv2d(3, num_channels[0], kernel_size=3, stride=2, padding=1, bias=False),
             nn.BatchNorm2d(num_channels[0]),
-            nn.ReLU(),
+            nn.ReLU6(),
         )
 
         separable_convs = []
@@ -86,7 +86,7 @@ class MobileNet(nn.Module):
 
 
 def test():
-    net = MobileNet(1000)
+    net = MobileNetTF(1000)
     summary(net, (3, 224, 224))
 
 
