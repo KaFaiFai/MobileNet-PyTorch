@@ -1,7 +1,7 @@
 """
 random stuff goes here
 """
-
+from collections import defaultdict
 from pathlib import Path
 import torch
 from torch import Tensor
@@ -40,9 +40,22 @@ def be_deterministic(seed=0):
     # torch.use_deterministic_algorithms(True)
 
 
+def return_none(*args, **kwargs):
+    return None
+
+
+def defaultdict_none(init_dict=None, **kwargs):
+    if init_dict is None:
+        init_dict = dict()
+    whole_dict = {**init_dict, **kwargs}
+    return defaultdict(return_none, **whole_dict)
+
+
 def test():
-    next_id = find_next_id(Path(r"C:\_Project\Pycharm Projects\MobileNet\out"))
-    print(next_id)
+    # next_id = find_next_id(Path(r"C:\_Project\Pycharm Projects\MobileNet\out"))
+    # print(next_id)
+    init_dict = {"a": 1, "b": 2}
+    print(defaultdict_none(init_dict, c=3, b=4))
 
 
 if __name__ == '__main__':

@@ -8,13 +8,12 @@ from torch import nn
 from torch.utils.data import DataLoader
 import torchvision.models as models
 
-from collections import defaultdict
 import argparse
 from pathlib import Path
 
 from config import *
 from script import test_loop
-from script.utils import be_deterministic
+from script.utils import be_deterministic, defaultdict_none
 
 be_deterministic()
 
@@ -52,7 +51,7 @@ def test(configs):
     assert model_type in MODELS.keys()
 
     # training configs
-    c = defaultdict(lambda: None)
+    c = defaultdict_none()
     c["print_step_test"] = configs.print_step
     c["device"] = device
 

@@ -1,6 +1,5 @@
 from pathlib import Path
 import argparse
-from collections import defaultdict
 
 import torch
 from torch import optim
@@ -9,7 +8,7 @@ from torch.utils.data import DataLoader
 
 from config import *
 from script import train_epoch, test_loop
-from script.utils import find_next_id, be_deterministic
+from script.utils import find_next_id, be_deterministic, defaultdict_none
 
 be_deterministic()
 
@@ -61,7 +60,7 @@ def train(configs):
     assert model_type in MODELS.keys()
 
     # training configs
-    c = defaultdict(lambda: None)
+    c = defaultdict_none()
     c["print_step_train"] = configs.print_step
     c["device"] = device
 
