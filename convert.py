@@ -4,7 +4,6 @@ convert from
 - MobileNet: wjc852456's repo https://github.com/wjc852456/pytorch-mobilenet-v1
 - MobileNetV2: official pytorch pretrained model
 """
-from collections import defaultdict
 from pathlib import Path
 
 import torch
@@ -13,7 +12,7 @@ import tensorflow as tf
 import numpy as np
 
 from model import *
-from script.utils import return_none, defaultdict_none
+from script.utils import defaultdict_none
 
 
 class ConverterTensorFlow:
