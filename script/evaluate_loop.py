@@ -6,7 +6,7 @@ from torch.utils.data import DataLoader
 from tools import ClassificationMetrics
 
 
-def test_loop(network: Module, dataloader: DataLoader, criterion: Module, **kwargs):
+def evaluate_loop(network: Module, dataloader: DataLoader, criterion: Module, **kwargs):
     device = kwargs["device"]
     print_step_test = kwargs["print_step_test"]
     num_batches = len(dataloader)

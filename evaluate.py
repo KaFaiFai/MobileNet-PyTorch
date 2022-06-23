@@ -12,7 +12,7 @@ import argparse
 from pathlib import Path
 
 from config import *
-from script import test_loop
+from script import evaluate_loop
 from script.utils import be_deterministic, defaultdict_none
 
 be_deterministic()
@@ -32,7 +32,7 @@ parser.add_argument("--num-worker", type=int, help="sub-processes for data loadi
 parser.add_argument("--print-step", type=int, help="How often to print progress (in batch)?")
 
 
-def test(configs):
+def evaluate(configs):
     # hyper parameters
     batch_size = configs.batch_size
 
@@ -78,9 +78,9 @@ def test(configs):
 
     # testing loop
     print(f"{'-' * 5} Test result {'-' * 5}")
-    test_loop(network, test_dataloader, criterion, **c)
+    evaluate_loop(network, test_dataloader, criterion, **c)
 
 
 if __name__ == '__main__':
     args = parser.parse_args()
-    test(args)
+    evaluate(args)

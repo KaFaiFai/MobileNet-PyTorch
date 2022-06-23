@@ -7,7 +7,7 @@ from torch import nn
 from torch.utils.data import DataLoader
 
 from config import *
-from script import train_epoch, test_loop
+from script import train_epoch, evaluate_loop
 from script.utils import find_next_id, be_deterministic, defaultdict_none
 
 be_deterministic()
@@ -105,7 +105,7 @@ def train(configs):
         train_epoch(network, train_dataloader, optimizer, criterion, **c)
 
         print(f"{'-' * 5} Validation result {'-' * 5}")
-        test_loop(network, test_dataloader, criterion, **c)
+        evaluate_loop(network, test_dataloader, criterion, **c)
 
         if save_step is not None and out_directory is not None and epoch % save_step == 0:
             out_path = Path(out_directory) / f"{find_next_id(Path(out_directory)):04d}"
