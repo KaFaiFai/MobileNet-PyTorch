@@ -1,7 +1,5 @@
 out/
 pretrained/
 notes/
-test.sh
-train.sh
-*.py
-script/
+
+*.sh

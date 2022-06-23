@@ -40,7 +40,7 @@ def test(configs):
     # experiment settings
     data = configs.data
     model_type = configs.model
-    if configs.device == "cuda" and torch.cuda.is_available():
+    if configs.device == "cuda" and not torch.cuda.is_available():
         print("WARNING: cuda is not available. Testing will continue with cpu")
         device = "cpu"
     else:
@@ -66,6 +66,10 @@ def test(configs):
     # set up model, dataloader, criterion
     Network = MODELS[model_type]
     state = torch.load(pretrained_model)
+    if num_class != state["num_class"]:
+        raise Exception(f"Expected output features to be {num_class}, "
+                        f"but pretrained model got {state['num_class']}")
+
     num_class, alpha, input_resolution = state["num_class"], state["alpha"], state["input_resolution"]
     network = Network(num_class, alpha=alpha, input_resolution=input_resolution).to(device)
     print(f"Loading pretrained network {network} from {pretrained_model} ...")
