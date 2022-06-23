@@ -16,5 +16,5 @@ class CIFAR10Dataset(torchvision.datasets.CIFAR10):
         super(CIFAR10Dataset, self).__init__(root, train=is_train, transform=self.transform, download=True)
 
     @property
-    def num_labels(self):
+    def num_class(self):
         return 10

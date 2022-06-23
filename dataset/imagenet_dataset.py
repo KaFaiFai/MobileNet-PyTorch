@@ -20,7 +20,7 @@ class ImageNetDataset(torchvision.datasets.ImageNet):
         return cls._classes[label]
 
     @property
-    def num_labels(cls):
+    def num_class(cls):
         return len(cls._classes)
 
     _classes = {

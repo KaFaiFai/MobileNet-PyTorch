@@ -18,5 +18,5 @@ class MNISTDataset(torchvision.datasets.MNIST):
         super(MNISTDataset, self).__init__(root, train=is_train, transform=self.transform, download=True)
 
     @property
-    def num_labels(self):
+    def num_class(self):
         return 10

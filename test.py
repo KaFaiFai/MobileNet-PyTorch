@@ -27,7 +27,7 @@ parser.add_argument("--batch-size", type=int, help="training batch size", requir
 
 # misc parameters
 parser.add_argument("--device", type=str, help="cpu or gpu?", choices=["cpu", "cuda"], default="cuda")
-parser.add_argument("--num-workers", type=int, help="sub-processes for data loading", default=0)
+parser.add_argument("--num-worker", type=int, help="sub-processes for data loading", default=0)
 
 # misc settings
 parser.add_argument("--print-step", type=int, help="How often to print progress (in batch)?")
@@ -40,9 +40,13 @@ def test(configs):
     # experiment settings
     data = configs.data
     model_type = configs.model
-    device = configs.device if torch.cuda.is_available() else "cpu"
-    num_workers = configs.num_workers
-    pretrained_model_path = configs.pretrained_model
+    if configs.device == "cuda" and torch.cuda.is_available():
+        print("WARNING: cuda is not available. Testing will continue with cpu")
+        device = "cpu"
+    else:
+        device = configs.device
+    num_worker = configs.num_worker
+    pretrained_model = configs.pretrained_model
 
     assert data in DATASETS.keys()
     assert model_type in MODELS.keys()
@@ -53,19 +57,21 @@ def test(configs):
     c["device"] = device
 
     # select dataset
+    print(f"Reading dataset {data}. This may take a while if dataset is large ...")
     Dataset = DATASETS[data]["class"]
     test_root = DATASETS[data]["test_root"]
     test_dataset = Dataset(root=test_root, is_train=False)
-    num_class = test_dataset.num_labels
+    num_class = test_dataset.num_class
 
-    # set up model, dataloader, optimizer, criterion
+    # set up model, dataloader, criterion
     Network = MODELS[model_type]
-    network = Network(num_class).to(device)
-    test_dataloader = DataLoader(test_dataset, batch_size=batch_size, num_workers=num_workers)
-    criterion = nn.CrossEntropyLoss()
-
-    state = torch.load(pretrained_model_path)
+    state = torch.load(pretrained_model)
+    num_class, alpha, input_resolution = state["num_class"], state["alpha"], state["input_resolution"]
+    network = Network(num_class, alpha=alpha, input_resolution=input_resolution).to(device)
+    print(f"Loading pretrained network {network} from {pretrained_model} ...")
     network.load_state_dict(state["state_dict"])
+    test_dataloader = DataLoader(test_dataset, batch_size=batch_size, num_workers=num_worker)
+    criterion = nn.CrossEntropyLoss()
 
     # testing loop
     print(f"{'-' * 5} Test result {'-' * 5}")

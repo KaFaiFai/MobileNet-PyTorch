@@ -26,8 +26,8 @@ parser.add_argument("--input-resolution", type=int, help="input resolution of Mo
 
 # misc parameters
 parser.add_argument("--device", type=str, help="cpu or gpu?", choices=["cpu", "cuda"], default="cuda")
-parser.add_argument("--num-workers", type=int, help="sub-processes for data loading", default=0)
-parser.add_argument("--num-epochs", type=int, help="training epochs", default=50)
+parser.add_argument("--num-worker", type=int, help="sub-processes for data loading", default=0)
+parser.add_argument("--num-epoch", type=int, help="training epochs", default=50)
 
 # misc settings
 parser.add_argument("--print-step", type=int, help="How often to print progress (in batch)?")
@@ -46,12 +46,16 @@ def train(configs):
     # experiment settings
     data = configs.data
     model_type = configs.model
-    device = configs.device if torch.cuda.is_available() else "cpu"
-    num_workers = configs.num_workers
-    num_epochs = configs.num_epochs
+    if configs.device == "cuda" and not torch.cuda.is_available():
+        print("WARNING: cuda is not available. Training will continue with cpu")
+        device = "cpu"
+    else:
+        device = configs.device
+    num_worker = configs.num_worker
+    num_epoch = configs.num_epoch
     save_step = configs.save_step
     out_directory = configs.out_dir
-    pretrained_model_path = configs.resume
+    resume = configs.resume
 
     assert data in DATASETS.keys()
     assert model_type in MODELS.keys()
@@ -62,30 +66,43 @@ def train(configs):
     c["device"] = device
 
     # select dataset
+    print(f"Reading dataset {data}. This may take a while if dataset is large ...")
     Dataset = DATASETS[data]["class"]
     train_root = DATASETS[data]["train_root"]
     test_root = DATASETS[data]["test_root"]
     train_dataset = Dataset(root=train_root, is_train=True)
     test_dataset = Dataset(root=test_root, is_train=False)
-    num_class = train_dataset.num_labels
+    num_class = train_dataset.num_class
 
     # set up model, dataloader, optimizer, criterion
     Network = MODELS[model_type]
-    network = Network(num_class).to(device)
-    train_dataloader = DataLoader(train_dataset, batch_size=batch_size, shuffle=True, num_workers=num_workers)
-    test_dataloader = DataLoader(test_dataset, batch_size=batch_size, num_workers=num_workers)
+    if resume is not None:
+        state = torch.load(resume)
+        if state["alpha"] != alpha or state["input_resolution"] != input_resolution:
+            print(f"WARNING: different model parameters. "
+                  f"Model will be created with alpha={state['alpha']} and "
+                  f"input_resolution={state['input_resolution']}")
+        if state["num_class"] != num_class:
+            raise Exception(f"Expected output features to be {num_class}, "
+                            f"but pretrained model got {state['num_class']}")
+
+        num_class, alpha, input_resolution = state["num_class"], state["alpha"], state["input_resolution"]
+        network = Network(num_class, alpha=alpha, input_resolution=input_resolution).to(device)
+        print(f"Loading pretrained network {network} from {resume} ...")
+        network.load_state_dict(state["state_dict"])
+        from_epoch = state["epoch"] + 1
+    else:
+        network = Network(num_class, alpha=alpha, input_resolution=input_resolution).to(device)
+        print(f"Initiating network {network} ...")
+        from_epoch = 0
+    train_dataloader = DataLoader(train_dataset, batch_size=batch_size, shuffle=True, num_workers=num_worker)
+    test_dataloader = DataLoader(test_dataset, batch_size=batch_size, num_workers=num_worker)
     optimizer = optim.Adam(network.parameters(), lr=lr)
     criterion = nn.CrossEntropyLoss()
 
-    from_epoch = 0
-    if pretrained_model_path is not None:
-        state = torch.load(pretrained_model_path)
-        network.load_state_dict(state["state_dict"])
-        from_epoch = max(state["epoch"] + 1, 0)
-
     # training loop
-    for epoch in range(from_epoch, num_epochs):
-        print(f"{'-' * 10} Epoch {epoch:2d}/{num_epochs} {'-' * 10}")
+    for epoch in range(from_epoch, num_epoch):
+        print(f"{'-' * 10} Epoch {epoch:2d}/{num_epoch} {'-' * 10}")
         train_epoch(network, train_dataloader, optimizer, criterion, **c)
 
         print(f"{'-' * 5} Validation result {'-' * 5}")

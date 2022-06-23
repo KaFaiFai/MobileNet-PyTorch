@@ -45,17 +45,19 @@ class SeparableConv(nn.Module):
 
 
 class MobileNet(nn.Module):
-    def __init__(self, num_labels, alpha=1, input_res=224):
+    def __init__(self, num_class, alpha=1, input_resolution=224, **kwargs):
         super().__init__()
         assert 0 < alpha <= 1, "width multiplier within (0, 1]"
-        assert 32 < input_res <= 224, "input resolution within (32, 224]"
+        assert 32 < input_resolution <= 224, "input resolution within (32, 224]"
+        self.num_class, self.alpha, self.input_resolution = num_class, alpha, input_resolution
 
         num_channels = [int(c * alpha) for c in (32, 64, 128, 128, 256, 256, 512, 512, 512, 512, 512, 512, 1024, 1024)]
-        resolutions = [int(r * input_res / 224) for r in (112, 112, 56, 56, 28, 28, 14, 14, 14, 14, 14, 14, 7, 7)]
+        resolutions = [int(r * input_resolution / 224) for r in
+                       (112, 112, 56, 56, 28, 28, 14, 14, 14, 14, 14, 14, 7, 7)]
         assert len(num_channels) == len(resolutions)
 
         self.initial = nn.Sequential(
-            nn.AdaptiveAvgPool2d(input_res),
+            nn.AdaptiveAvgPool2d(input_resolution),
             nn.Conv2d(3, num_channels[0], kernel_size=3, stride=2, padding=1, bias=False),
             nn.BatchNorm2d(num_channels[0]),
             nn.ReLU(),
@@ -71,18 +73,21 @@ class MobileNet(nn.Module):
         self.final = nn.Sequential(
             nn.AvgPool2d(resolutions[-1]),
             nn.Dropout(p=0.001),
-            nn.Conv2d(num_channels[-1], num_labels, kernel_size=1),  # 1x1 conv as linear layer
+            nn.Conv2d(num_channels[-1], num_class, kernel_size=1),  # 1x1 conv as linear layer
             nn.Flatten(),
             # no softmax
         )
 
     def forward(self, x):
-        # (B, 3, H, W) -> (B, num_labels)
+        # (B, 3, H, W) -> (B, num_class)
         # no softmax implemented
         x = self.initial(x)
         x = self.separable_convs(x)
         x = self.final(x)
         return x
+
+    def __repr__(self):
+        return f"MobileNet({self.num_class}, alpha={self.alpha}, input_resolution={self.input_resolution})"
 
 
 def test():

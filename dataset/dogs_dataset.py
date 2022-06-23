@@ -54,7 +54,7 @@ class DogsDataset(Dataset):
         return cls._classes[label]
 
     @property
-    def num_labels(self):
+    def num_class(self):
         return len(self._classes)
 
     _classes = (
