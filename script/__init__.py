@@ -1,2 +1,2 @@
-from .train_epoch import train_epoch
+from .train_loop import train_loop
 from .evaluate_loop import evaluate_loop

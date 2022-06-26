@@ -9,7 +9,7 @@ import timeit
 from tools import ClassificationMetrics
 
 
-def train_epoch(network: Module, dataloader: DataLoader, optimizer: Optimizer, criterion: Module, **kwargs):
+def train_loop(network: Module, dataloader: DataLoader, optimizer: Optimizer, criterion: Module, **kwargs):
     start = timeit.default_timer()
     device, print_step_train = kwargs["device"], kwargs["print_step_train"]
     num_batches = len(dataloader)

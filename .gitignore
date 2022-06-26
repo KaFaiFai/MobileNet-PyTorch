@@ -1,5 +1,6 @@
 out/
 pretrained/
 notes/
+.idea/
 
 *.sh

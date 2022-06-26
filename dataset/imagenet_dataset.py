@@ -20,8 +20,8 @@ class ImageNetDataset(torchvision.datasets.ImageNet):
         return cls._classes[label]
 
     @property
-    def num_class(cls):
-        return len(cls._classes)
+    def num_class(self):
+        return len(self._classes)
 
     _classes = {
         0: 'tench, Tinca tinca',

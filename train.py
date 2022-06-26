@@ -7,7 +7,7 @@ from torch import nn
 from torch.utils.data import DataLoader
 
 from config import *
-from script import train_epoch, evaluate_loop
+from script import train_loop, evaluate_loop
 from script.utils import find_next_id, be_deterministic, defaultdict_none
 
 be_deterministic()
@@ -102,7 +102,7 @@ def train(configs):
     # training loop
     for epoch in range(from_epoch, num_epoch):
         print(f"{'-' * 10} Epoch {epoch:2d}/{num_epoch} {'-' * 10}")
-        train_epoch(network, train_dataloader, optimizer, criterion, **c)
+        train_loop(network, train_dataloader, optimizer, criterion, **c)
 
         print(f"{'-' * 5} Validation result {'-' * 5}")
         evaluate_loop(network, test_dataloader, criterion, **c)
