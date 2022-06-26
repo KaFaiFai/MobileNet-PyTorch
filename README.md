@@ -6,12 +6,17 @@ User can convert pretrained models **from official TensorFlow implementation** a
 implementation**
 
 ## Examples
+Evaluation results on ImageNet   
+The following pretrained models are converted from different sources using `convert.py`
 
 | Model                                              | Top 1 Accuracy | Top 5 Accuracy | F1 score |
 |----------------------------------------------------|----------------|----------------|----------|
 | [MobileNet][net1] <br/>from [TensorFlow][net1_src] | 64.21%         | 85.12%         | 0.6411   |
 | [MobileNet][net2] <br/>from [wjc852456][net2_src]  | 67.95%         | 88.13%         | 0.6762   |
 | [MobileNetV2][net3] <br/>from [PyTorch][net3_src]  | 69.84%         | 89.26%         | 0.6952   |
+
+
+[MobileNet][net1]
 
 [net1]: (https://drive.google.com/file/d/1gFH0c6YregiiFctTFBIjr_7ffHZIUfxp/view?usp=sharing)
 
