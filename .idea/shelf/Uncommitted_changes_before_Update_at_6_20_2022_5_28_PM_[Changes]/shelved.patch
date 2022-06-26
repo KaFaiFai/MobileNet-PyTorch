@@ -1,0 +1,1028 @@
+Index: notes/tf_mobilenet_params.txt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/notes/tf_mobilenet_params.txt b/notes/tf_mobilenet_params.txt
+new file mode 100644
+--- /dev/null	(date 1655716171734)
++++ b/notes/tf_mobilenet_params.txt	(date 1655716171734)
+@@ -0,0 +1,91 @@
++input_1                       :
++conv1                         : kernel:0(3, 3, 3, 32)
++conv1_bn                      : gamma:0(32,) beta:0(32,) moving_mean:0(32,) moving_variance:0(32,)
++conv1_relu                    :
++conv_dw_1                     : depthwise_kernel:0(3, 3, 32, 1)
++conv_dw_1_bn                  : gamma:0(32,) beta:0(32,) moving_mean:0(32,) moving_variance:0(32,)
++conv_dw_1_relu                :
++conv_pw_1                     : kernel:0(1, 1, 32, 64)
++conv_pw_1_bn                  : gamma:0(64,) beta:0(64,) moving_mean:0(64,) moving_variance:0(64,)
++conv_pw_1_relu                :
++conv_pad_2                    :
++conv_dw_2                     : depthwise_kernel:0(3, 3, 64, 1)
++conv_dw_2_bn                  : gamma:0(64,) beta:0(64,) moving_mean:0(64,) moving_variance:0(64,)
++conv_dw_2_relu                :
++conv_pw_2                     : kernel:0(1, 1, 64, 128)
++conv_pw_2_bn                  : gamma:0(128,) beta:0(128,) moving_mean:0(128,) moving_variance:0(128,)
++conv_pw_2_relu                :
++conv_dw_3                     : depthwise_kernel:0(3, 3, 128, 1)
++conv_dw_3_bn                  : gamma:0(128,) beta:0(128,) moving_mean:0(128,) moving_variance:0(128,)
++conv_dw_3_relu                :
++conv_pw_3                     : kernel:0(1, 1, 128, 128)
++conv_pw_3_bn                  : gamma:0(128,) beta:0(128,) moving_mean:0(128,) moving_variance:0(128,)
++conv_pw_3_relu                :
++conv_pad_4                    :
++conv_dw_4                     : depthwise_kernel:0(3, 3, 128, 1)
++conv_dw_4_bn                  : gamma:0(128,) beta:0(128,) moving_mean:0(128,) moving_variance:0(128,)
++conv_dw_4_relu                :
++conv_pw_4                     : kernel:0(1, 1, 128, 256)
++conv_pw_4_bn                  : gamma:0(256,) beta:0(256,) moving_mean:0(256,) moving_variance:0(256,)
++conv_pw_4_relu                :
++conv_dw_5                     : depthwise_kernel:0(3, 3, 256, 1)
++conv_dw_5_bn                  : gamma:0(256,) beta:0(256,) moving_mean:0(256,) moving_variance:0(256,)
++conv_dw_5_relu                :
++conv_pw_5                     : kernel:0(1, 1, 256, 256)
++conv_pw_5_bn                  : gamma:0(256,) beta:0(256,) moving_mean:0(256,) moving_variance:0(256,)
++conv_pw_5_relu                :
++conv_pad_6                    :
++conv_dw_6                     : depthwise_kernel:0(3, 3, 256, 1)
++conv_dw_6_bn                  : gamma:0(256,) beta:0(256,) moving_mean:0(256,) moving_variance:0(256,)
++conv_dw_6_relu                :
++conv_pw_6                     : kernel:0(1, 1, 256, 512)
++conv_pw_6_bn                  : gamma:0(512,) beta:0(512,) moving_mean:0(512,) moving_variance:0(512,)
++conv_pw_6_relu                :
++conv_dw_7                     : depthwise_kernel:0(3, 3, 512, 1)
++conv_dw_7_bn                  : gamma:0(512,) beta:0(512,) moving_mean:0(512,) moving_variance:0(512,)
++conv_dw_7_relu                :
++conv_pw_7                     : kernel:0(1, 1, 512, 512)
++conv_pw_7_bn                  : gamma:0(512,) beta:0(512,) moving_mean:0(512,) moving_variance:0(512,)
++conv_pw_7_relu                :
++conv_dw_8                     : depthwise_kernel:0(3, 3, 512, 1)
++conv_dw_8_bn                  : gamma:0(512,) beta:0(512,) moving_mean:0(512,) moving_variance:0(512,)
++conv_dw_8_relu                :
++conv_pw_8                     : kernel:0(1, 1, 512, 512)
++conv_pw_8_bn                  : gamma:0(512,) beta:0(512,) moving_mean:0(512,) moving_variance:0(512,)
++conv_pw_8_relu                :
++conv_dw_9                     : depthwise_kernel:0(3, 3, 512, 1)
++conv_dw_9_bn                  : gamma:0(512,) beta:0(512,) moving_mean:0(512,) moving_variance:0(512,)
++conv_dw_9_relu                :
++conv_pw_9                     : kernel:0(1, 1, 512, 512)
++conv_pw_9_bn                  : gamma:0(512,) beta:0(512,) moving_mean:0(512,) moving_variance:0(512,)
++conv_pw_9_relu                :
++conv_dw_10                    : depthwise_kernel:0(3, 3, 512, 1)
++conv_dw_10_bn                 : gamma:0(512,) beta:0(512,) moving_mean:0(512,) moving_variance:0(512,)
++conv_dw_10_relu               :
++conv_pw_10                    : kernel:0(1, 1, 512, 512)
++conv_pw_10_bn                 : gamma:0(512,) beta:0(512,) moving_mean:0(512,) moving_variance:0(512,)
++conv_pw_10_relu               :
++conv_dw_11                    : depthwise_kernel:0(3, 3, 512, 1)
++conv_dw_11_bn                 : gamma:0(512,) beta:0(512,) moving_mean:0(512,) moving_variance:0(512,)
++conv_dw_11_relu               :
++conv_pw_11                    : kernel:0(1, 1, 512, 512)
++conv_pw_11_bn                 : gamma:0(512,) beta:0(512,) moving_mean:0(512,) moving_variance:0(512,)
++conv_pw_11_relu               :
++conv_pad_12                   :
++conv_dw_12                    : depthwise_kernel:0(3, 3, 512, 1)
++conv_dw_12_bn                 : gamma:0(512,) beta:0(512,) moving_mean:0(512,) moving_variance:0(512,)
++conv_dw_12_relu               :
++conv_pw_12                    : kernel:0(1, 1, 512, 1024)
++conv_pw_12_bn                 : gamma:0(1024,) beta:0(1024,) moving_mean:0(1024,) moving_variance:0(1024,)
++conv_pw_12_relu               :
++conv_dw_13                    : depthwise_kernel:0(3, 3, 1024, 1)
++conv_dw_13_bn                 : gamma:0(1024,) beta:0(1024,) moving_mean:0(1024,) moving_variance:0(1024,)
++conv_dw_13_relu               :
++conv_pw_13                    : kernel:0(1, 1, 1024, 1024)
++conv_pw_13_bn                 : gamma:0(1024,) beta:0(1024,) moving_mean:0(1024,) moving_variance:0(1024,)
++conv_pw_13_relu               :
++global_average_pooling2d      :
++dropout                       :
++conv_preds                    : kernel:0(1, 1, 1024, 1000) bias:0(1000,)
++reshape_2                     :
++predictions                   :
+\ No newline at end of file
+Index: notes/tf_mobilenet_summary.txt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/notes/tf_mobilenet_summary.txt b/notes/tf_mobilenet_summary.txt
+new file mode 100644
+--- /dev/null	(date 1655716237779)
++++ b/notes/tf_mobilenet_summary.txt	(date 1655716237779)
+@@ -0,0 +1,223 @@
++Model: "mobilenet_1.00_224"
++_________________________________________________________________
++ Layer (type)                Output Shape              Param #   
++=================================================================
++ input_1 (InputLayer)        [(None, 224, 224, 3)]     0         
++                                                                 
++ conv1 (Conv2D)              (None, 112, 112, 32)      864       
++                                                                 
++ conv1_bn (BatchNormalizatio  (None, 112, 112, 32)     128       
++ n)                                                              
++                                                                 
++ conv1_relu (ReLU)           (None, 112, 112, 32)      0         
++                                                                 
++ conv_dw_1 (DepthwiseConv2D)  (None, 112, 112, 32)     288       
++                                                                 
++ conv_dw_1_bn (BatchNormaliz  (None, 112, 112, 32)     128       
++ ation)                                                          
++                                                                 
++ conv_dw_1_relu (ReLU)       (None, 112, 112, 32)      0         
++                                                                 
++ conv_pw_1 (Conv2D)          (None, 112, 112, 64)      2048      
++                                                                 
++ conv_pw_1_bn (BatchNormaliz  (None, 112, 112, 64)     256       
++ ation)                                                          
++                                                                 
++ conv_pw_1_relu (ReLU)       (None, 112, 112, 64)      0         
++                                                                 
++ conv_pad_2 (ZeroPadding2D)  (None, 113, 113, 64)      0         
++                                                                 
++ conv_dw_2 (DepthwiseConv2D)  (None, 56, 56, 64)       576       
++                                                                 
++ conv_dw_2_bn (BatchNormaliz  (None, 56, 56, 64)       256       
++ ation)                                                          
++                                                                 
++ conv_dw_2_relu (ReLU)       (None, 56, 56, 64)        0         
++                                                                 
++ conv_pw_2 (Conv2D)          (None, 56, 56, 128)       8192      
++                                                                 
++ conv_pw_2_bn (BatchNormaliz  (None, 56, 56, 128)      512       
++ ation)                                                          
++                                                                 
++ conv_pw_2_relu (ReLU)       (None, 56, 56, 128)       0         
++                                                                 
++ conv_dw_3 (DepthwiseConv2D)  (None, 56, 56, 128)      1152      
++                                                                 
++ conv_dw_3_bn (BatchNormaliz  (None, 56, 56, 128)      512       
++ ation)                                                          
++                                                                 
++ conv_dw_3_relu (ReLU)       (None, 56, 56, 128)       0         
++                                                                 
++ conv_pw_3 (Conv2D)          (None, 56, 56, 128)       16384     
++                                                                 
++ conv_pw_3_bn (BatchNormaliz  (None, 56, 56, 128)      512       
++ ation)                                                          
++                                                                 
++ conv_pw_3_relu (ReLU)       (None, 56, 56, 128)       0         
++                                                                 
++ conv_pad_4 (ZeroPadding2D)  (None, 57, 57, 128)       0         
++                                                                 
++ conv_dw_4 (DepthwiseConv2D)  (None, 28, 28, 128)      1152      
++                                                                 
++ conv_dw_4_bn (BatchNormaliz  (None, 28, 28, 128)      512       
++ ation)                                                          
++                                                                 
++ conv_dw_4_relu (ReLU)       (None, 28, 28, 128)       0         
++                                                                 
++ conv_pw_4 (Conv2D)          (None, 28, 28, 256)       32768     
++                                                                 
++ conv_pw_4_bn (BatchNormaliz  (None, 28, 28, 256)      1024      
++ ation)                                                          
++                                                                 
++ conv_pw_4_relu (ReLU)       (None, 28, 28, 256)       0         
++                                                                 
++ conv_dw_5 (DepthwiseConv2D)  (None, 28, 28, 256)      2304      
++                                                                 
++ conv_dw_5_bn (BatchNormaliz  (None, 28, 28, 256)      1024      
++ ation)                                                          
++                                                                 
++ conv_dw_5_relu (ReLU)       (None, 28, 28, 256)       0         
++                                                                 
++ conv_pw_5 (Conv2D)          (None, 28, 28, 256)       65536     
++                                                                 
++ conv_pw_5_bn (BatchNormaliz  (None, 28, 28, 256)      1024      
++ ation)                                                          
++                                                                 
++ conv_pw_5_relu (ReLU)       (None, 28, 28, 256)       0         
++                                                                 
++ conv_pad_6 (ZeroPadding2D)  (None, 29, 29, 256)       0         
++                                                                 
++ conv_dw_6 (DepthwiseConv2D)  (None, 14, 14, 256)      2304      
++                                                                 
++ conv_dw_6_bn (BatchNormaliz  (None, 14, 14, 256)      1024      
++ ation)                                                          
++                                                                 
++ conv_dw_6_relu (ReLU)       (None, 14, 14, 256)       0         
++                                                                 
++ conv_pw_6 (Conv2D)          (None, 14, 14, 512)       131072    
++                                                                 
++ conv_pw_6_bn (BatchNormaliz  (None, 14, 14, 512)      2048      
++ ation)                                                          
++                                                                 
++ conv_pw_6_relu (ReLU)       (None, 14, 14, 512)       0         
++                                                                 
++ conv_dw_7 (DepthwiseConv2D)  (None, 14, 14, 512)      4608      
++                                                                 
++ conv_dw_7_bn (BatchNormaliz  (None, 14, 14, 512)      2048      
++ ation)                                                          
++                                                                 
++ conv_dw_7_relu (ReLU)       (None, 14, 14, 512)       0         
++                                                                 
++ conv_pw_7 (Conv2D)          (None, 14, 14, 512)       262144    
++                                                                 
++ conv_pw_7_bn (BatchNormaliz  (None, 14, 14, 512)      2048      
++ ation)                                                          
++                                                                 
++ conv_pw_7_relu (ReLU)       (None, 14, 14, 512)       0         
++                                                                 
++ conv_dw_8 (DepthwiseConv2D)  (None, 14, 14, 512)      4608      
++                                                                 
++ conv_dw_8_bn (BatchNormaliz  (None, 14, 14, 512)      2048      
++ ation)                                                          
++                                                                 
++ conv_dw_8_relu (ReLU)       (None, 14, 14, 512)       0         
++                                                                 
++ conv_pw_8 (Conv2D)          (None, 14, 14, 512)       262144    
++                                                                 
++ conv_pw_8_bn (BatchNormaliz  (None, 14, 14, 512)      2048      
++ ation)                                                          
++                                                                 
++ conv_pw_8_relu (ReLU)       (None, 14, 14, 512)       0         
++                                                                 
++ conv_dw_9 (DepthwiseConv2D)  (None, 14, 14, 512)      4608      
++                                                                 
++ conv_dw_9_bn (BatchNormaliz  (None, 14, 14, 512)      2048      
++ ation)                                                          
++                                                                 
++ conv_dw_9_relu (ReLU)       (None, 14, 14, 512)       0         
++                                                                 
++ conv_pw_9 (Conv2D)          (None, 14, 14, 512)       262144    
++                                                                 
++ conv_pw_9_bn (BatchNormaliz  (None, 14, 14, 512)      2048      
++ ation)                                                          
++                                                                 
++ conv_pw_9_relu (ReLU)       (None, 14, 14, 512)       0         
++                                                                 
++ conv_dw_10 (DepthwiseConv2D  (None, 14, 14, 512)      4608      
++ )                                                               
++                                                                 
++ conv_dw_10_bn (BatchNormali  (None, 14, 14, 512)      2048      
++ zation)                                                         
++                                                                 
++ conv_dw_10_relu (ReLU)      (None, 14, 14, 512)       0         
++                                                                 
++ conv_pw_10 (Conv2D)         (None, 14, 14, 512)       262144    
++                                                                 
++ conv_pw_10_bn (BatchNormali  (None, 14, 14, 512)      2048      
++ zation)                                                         
++                                                                 
++ conv_pw_10_relu (ReLU)      (None, 14, 14, 512)       0         
++                                                                 
++ conv_dw_11 (DepthwiseConv2D  (None, 14, 14, 512)      4608      
++ )                                                               
++                                                                 
++ conv_dw_11_bn (BatchNormali  (None, 14, 14, 512)      2048      
++ zation)                                                         
++                                                                 
++ conv_dw_11_relu (ReLU)      (None, 14, 14, 512)       0         
++                                                                 
++ conv_pw_11 (Conv2D)         (None, 14, 14, 512)       262144    
++                                                                 
++ conv_pw_11_bn (BatchNormali  (None, 14, 14, 512)      2048      
++ zation)                                                         
++                                                                 
++ conv_pw_11_relu (ReLU)      (None, 14, 14, 512)       0         
++                                                                 
++ conv_pad_12 (ZeroPadding2D)  (None, 15, 15, 512)      0         
++                                                                 
++ conv_dw_12 (DepthwiseConv2D  (None, 7, 7, 512)        4608      
++ )                                                               
++                                                                 
++ conv_dw_12_bn (BatchNormali  (None, 7, 7, 512)        2048      
++ zation)                                                         
++                                                                 
++ conv_dw_12_relu (ReLU)      (None, 7, 7, 512)         0         
++                                                                 
++ conv_pw_12 (Conv2D)         (None, 7, 7, 1024)        524288    
++                                                                 
++ conv_pw_12_bn (BatchNormali  (None, 7, 7, 1024)       4096      
++ zation)                                                         
++                                                                 
++ conv_pw_12_relu (ReLU)      (None, 7, 7, 1024)        0         
++                                                                 
++ conv_dw_13 (DepthwiseConv2D  (None, 7, 7, 1024)       9216      
++ )                                                               
++                                                                 
++ conv_dw_13_bn (BatchNormali  (None, 7, 7, 1024)       4096      
++ zation)                                                         
++                                                                 
++ conv_dw_13_relu (ReLU)      (None, 7, 7, 1024)        0         
++                                                                 
++ conv_pw_13 (Conv2D)         (None, 7, 7, 1024)        1048576   
++                                                                 
++ conv_pw_13_bn (BatchNormali  (None, 7, 7, 1024)       4096      
++ zation)                                                         
++                                                                 
++ conv_pw_13_relu (ReLU)      (None, 7, 7, 1024)        0         
++                                                                 
++ global_average_pooling2d (G  (None, 1, 1, 1024)       0         
++ lobalAveragePooling2D)                                          
++                                                                 
++ dropout (Dropout)           (None, 1, 1, 1024)        0         
++                                                                 
++ conv_preds (Conv2D)         (None, 1, 1, 1000)        1025000   
++                                                                 
++ reshape_2 (Reshape)         (None, 1000)              0         
++                                                                 
++ predictions (Activation)    (None, 1000)              0         
++                                                                 
++=================================================================
++Total params: 4,253,864
++Trainable params: 4,231,976
++Non-trainable params: 21,888
++_________________________________________________________________
+\ No newline at end of file
+Index: state.txt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-16LE
+===================================================================
+diff --git a/state.txt b/state.txt
+new file mode 100644
+--- /dev/null	(date 1655716555937)
++++ b/state.txt	(date 1655716555937)
+@@ -0,0 +1,164 @@
++initial.1.weight                             : torch.Size([32, 3, 3, 3])
++initial.2.weight                             : torch.Size([32])
++initial.2.bias                               : torch.Size([32])
++initial.2.running_mean                       : torch.Size([32])
++initial.2.running_var                        : torch.Size([32])
++initial.2.num_batches_tracked                : torch.Size([])
++separable_convs.0.dw_conv.conv.weight        : torch.Size([32, 1, 3, 3])
++separable_convs.0.bn1.weight                 : torch.Size([32])
++separable_convs.0.bn1.bias                   : torch.Size([32])
++separable_convs.0.bn1.running_mean           : torch.Size([32])
++separable_convs.0.bn1.running_var            : torch.Size([32])
++separable_convs.0.bn1.num_batches_tracked    : torch.Size([])
++separable_convs.0.pw_conv.conv.weight        : torch.Size([64, 32, 1, 1])
++separable_convs.0.bn2.weight                 : torch.Size([64])
++separable_convs.0.bn2.bias                   : torch.Size([64])
++separable_convs.0.bn2.running_mean           : torch.Size([64])
++separable_convs.0.bn2.running_var            : torch.Size([64])
++separable_convs.0.bn2.num_batches_tracked    : torch.Size([])
++separable_convs.1.dw_conv.conv.weight        : torch.Size([64, 1, 3, 3])
++separable_convs.1.bn1.weight                 : torch.Size([64])
++separable_convs.1.bn1.bias                   : torch.Size([64])
++separable_convs.1.bn1.running_mean           : torch.Size([64])
++separable_convs.1.bn1.running_var            : torch.Size([64])
++separable_convs.1.bn1.num_batches_tracked    : torch.Size([])
++separable_convs.1.pw_conv.conv.weight        : torch.Size([128, 64, 1, 1])
++separable_convs.1.bn2.weight                 : torch.Size([128])
++separable_convs.1.bn2.bias                   : torch.Size([128])
++separable_convs.1.bn2.running_mean           : torch.Size([128])
++separable_convs.1.bn2.running_var            : torch.Size([128])
++separable_convs.1.bn2.num_batches_tracked    : torch.Size([])
++separable_convs.2.dw_conv.conv.weight        : torch.Size([128, 1, 3, 3])
++separable_convs.2.bn1.weight                 : torch.Size([128])
++separable_convs.2.bn1.bias                   : torch.Size([128])
++separable_convs.2.bn1.running_mean           : torch.Size([128])
++separable_convs.2.bn1.running_var            : torch.Size([128])
++separable_convs.2.bn1.num_batches_tracked    : torch.Size([])
++separable_convs.2.pw_conv.conv.weight        : torch.Size([128, 128, 1, 1])
++separable_convs.2.bn2.weight                 : torch.Size([128])
++separable_convs.2.bn2.bias                   : torch.Size([128])
++separable_convs.2.bn2.running_mean           : torch.Size([128])
++separable_convs.2.bn2.running_var            : torch.Size([128])
++separable_convs.2.bn2.num_batches_tracked    : torch.Size([])
++separable_convs.3.dw_conv.conv.weight        : torch.Size([128, 1, 3, 3])
++separable_convs.3.bn1.weight                 : torch.Size([128])
++separable_convs.3.bn1.bias                   : torch.Size([128])
++separable_convs.3.bn1.running_mean           : torch.Size([128])
++separable_convs.3.bn1.running_var            : torch.Size([128])
++separable_convs.3.bn1.num_batches_tracked    : torch.Size([])
++separable_convs.3.pw_conv.conv.weight        : torch.Size([256, 128, 1, 1])
++separable_convs.3.bn2.weight                 : torch.Size([256])
++separable_convs.3.bn2.bias                   : torch.Size([256])
++separable_convs.3.bn2.running_mean           : torch.Size([256])
++separable_convs.3.bn2.running_var            : torch.Size([256])
++separable_convs.3.bn2.num_batches_tracked    : torch.Size([])
++separable_convs.4.dw_conv.conv.weight        : torch.Size([256, 1, 3, 3])
++separable_convs.4.bn1.weight                 : torch.Size([256])
++separable_convs.4.bn1.bias                   : torch.Size([256])
++separable_convs.4.bn1.running_mean           : torch.Size([256])
++separable_convs.4.bn1.running_var            : torch.Size([256])
++separable_convs.4.bn1.num_batches_tracked    : torch.Size([])
++separable_convs.4.pw_conv.conv.weight        : torch.Size([256, 256, 1, 1])
++separable_convs.4.bn2.weight                 : torch.Size([256])
++separable_convs.4.bn2.bias                   : torch.Size([256])
++separable_convs.4.bn2.running_mean           : torch.Size([256])
++separable_convs.4.bn2.running_var            : torch.Size([256])
++separable_convs.4.bn2.num_batches_tracked    : torch.Size([])
++separable_convs.5.dw_conv.conv.weight        : torch.Size([256, 1, 3, 3])
++separable_convs.5.bn1.weight                 : torch.Size([256])
++separable_convs.5.bn1.bias                   : torch.Size([256])
++separable_convs.5.bn1.running_mean           : torch.Size([256])
++separable_convs.5.bn1.running_var            : torch.Size([256])
++separable_convs.5.bn1.num_batches_tracked    : torch.Size([])
++separable_convs.5.pw_conv.conv.weight        : torch.Size([512, 256, 1, 1])
++separable_convs.5.bn2.weight                 : torch.Size([512])
++separable_convs.5.bn2.bias                   : torch.Size([512])
++separable_convs.5.bn2.running_mean           : torch.Size([512])
++separable_convs.5.bn2.running_var            : torch.Size([512])
++separable_convs.5.bn2.num_batches_tracked    : torch.Size([])
++separable_convs.6.dw_conv.conv.weight        : torch.Size([512, 1, 3, 3])
++separable_convs.6.bn1.weight                 : torch.Size([512])
++separable_convs.6.bn1.bias                   : torch.Size([512])
++separable_convs.6.bn1.running_mean           : torch.Size([512])
++separable_convs.6.bn1.running_var            : torch.Size([512])
++separable_convs.6.bn1.num_batches_tracked    : torch.Size([])
++separable_convs.6.pw_conv.conv.weight        : torch.Size([512, 512, 1, 1])
++separable_convs.6.bn2.weight                 : torch.Size([512])
++separable_convs.6.bn2.bias                   : torch.Size([512])
++separable_convs.6.bn2.running_mean           : torch.Size([512])
++separable_convs.6.bn2.running_var            : torch.Size([512])
++separable_convs.6.bn2.num_batches_tracked    : torch.Size([])
++separable_convs.7.dw_conv.conv.weight        : torch.Size([512, 1, 3, 3])
++separable_convs.7.bn1.weight                 : torch.Size([512])
++separable_convs.7.bn1.bias                   : torch.Size([512])
++separable_convs.7.bn1.running_mean           : torch.Size([512])
++separable_convs.7.bn1.running_var            : torch.Size([512])
++separable_convs.7.bn1.num_batches_tracked    : torch.Size([])
++separable_convs.7.pw_conv.conv.weight        : torch.Size([512, 512, 1, 1])
++separable_convs.7.bn2.weight                 : torch.Size([512])
++separable_convs.7.bn2.bias                   : torch.Size([512])
++separable_convs.7.bn2.running_mean           : torch.Size([512])
++separable_convs.7.bn2.running_var            : torch.Size([512])
++separable_convs.7.bn2.num_batches_tracked    : torch.Size([])
++separable_convs.8.dw_conv.conv.weight        : torch.Size([512, 1, 3, 3])
++separable_convs.8.bn1.weight                 : torch.Size([512])
++separable_convs.8.bn1.bias                   : torch.Size([512])
++separable_convs.8.bn1.running_mean           : torch.Size([512])
++separable_convs.8.bn1.running_var            : torch.Size([512])
++separable_convs.8.bn1.num_batches_tracked    : torch.Size([])
++separable_convs.8.pw_conv.conv.weight        : torch.Size([512, 512, 1, 1])
++separable_convs.8.bn2.weight                 : torch.Size([512])
++separable_convs.8.bn2.bias                   : torch.Size([512])
++separable_convs.8.bn2.running_mean           : torch.Size([512])
++separable_convs.8.bn2.running_var            : torch.Size([512])
++separable_convs.8.bn2.num_batches_tracked    : torch.Size([])
++separable_convs.9.dw_conv.conv.weight        : torch.Size([512, 1, 3, 3])
++separable_convs.9.bn1.weight                 : torch.Size([512])
++separable_convs.9.bn1.bias                   : torch.Size([512])
++separable_convs.9.bn1.running_mean           : torch.Size([512])
++separable_convs.9.bn1.running_var            : torch.Size([512])
++separable_convs.9.bn1.num_batches_tracked    : torch.Size([])
++separable_convs.9.pw_conv.conv.weight        : torch.Size([512, 512, 1, 1])
++separable_convs.9.bn2.weight                 : torch.Size([512])
++separable_convs.9.bn2.bias                   : torch.Size([512])
++separable_convs.9.bn2.running_mean           : torch.Size([512])
++separable_convs.9.bn2.running_var            : torch.Size([512])
++separable_convs.9.bn2.num_batches_tracked    : torch.Size([])
++separable_convs.10.dw_conv.conv.weight       : torch.Size([512, 1, 3, 3])
++separable_convs.10.bn1.weight                : torch.Size([512])
++separable_convs.10.bn1.bias                  : torch.Size([512])
++separable_convs.10.bn1.running_mean          : torch.Size([512])
++separable_convs.10.bn1.running_var           : torch.Size([512])
++separable_convs.10.bn1.num_batches_tracked   : torch.Size([])
++separable_convs.10.pw_conv.conv.weight       : torch.Size([512, 512, 1, 1])
++separable_convs.10.bn2.weight                : torch.Size([512])
++separable_convs.10.bn2.bias                  : torch.Size([512])
++separable_convs.10.bn2.running_mean          : torch.Size([512])
++separable_convs.10.bn2.running_var           : torch.Size([512])
++separable_convs.10.bn2.num_batches_tracked   : torch.Size([])
++separable_convs.11.dw_conv.conv.weight       : torch.Size([512, 1, 3, 3])
++separable_convs.11.bn1.weight                : torch.Size([512])
++separable_convs.11.bn1.bias                  : torch.Size([512])
++separable_convs.11.bn1.running_mean          : torch.Size([512])
++separable_convs.11.bn1.running_var           : torch.Size([512])
++separable_convs.11.bn1.num_batches_tracked   : torch.Size([])
++separable_convs.11.pw_conv.conv.weight       : torch.Size([1024, 512, 1, 1])
++separable_convs.11.bn2.weight                : torch.Size([1024])
++separable_convs.11.bn2.bias                  : torch.Size([1024])
++separable_convs.11.bn2.running_mean          : torch.Size([1024])
++separable_convs.11.bn2.running_var           : torch.Size([1024])
++separable_convs.11.bn2.num_batches_tracked   : torch.Size([])
++separable_convs.12.dw_conv.conv.weight       : torch.Size([1024, 1, 3, 3])
++separable_convs.12.bn1.weight                : torch.Size([1024])
++separable_convs.12.bn1.bias                  : torch.Size([1024])
++separable_convs.12.bn1.running_mean          : torch.Size([1024])
++separable_convs.12.bn1.running_var           : torch.Size([1024])
++separable_convs.12.bn1.num_batches_tracked   : torch.Size([])
++separable_convs.12.pw_conv.conv.weight       : torch.Size([1024, 1024, 1, 1])
++separable_convs.12.bn2.weight                : torch.Size([1024])
++separable_convs.12.bn2.bias                  : torch.Size([1024])
++separable_convs.12.bn2.running_mean          : torch.Size([1024])
++separable_convs.12.bn2.running_var           : torch.Size([1024])
++separable_convs.12.bn2.num_batches_tracked   : torch.Size([])
++final.3.weight                               : torch.Size([1, 1, 1024, 1000])
++final.3.bias                                 : torch.Size([1000])
+Index: notes/pt_mobilenet_params.txt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/notes/pt_mobilenet_params.txt b/notes/pt_mobilenet_params.txt
+new file mode 100644
+--- /dev/null	(date 1655716212893)
++++ b/notes/pt_mobilenet_params.txt	(date 1655716212893)
+@@ -0,0 +1,164 @@
++initial.1.weight                             : torch.Size([32, 3, 3, 3])
++initial.2.weight                             : torch.Size([32])
++initial.2.bias                               : torch.Size([32])
++initial.2.running_mean                       : torch.Size([32])
++initial.2.running_var                        : torch.Size([32])
++initial.2.num_batches_tracked                : torch.Size([])
++separable_convs.0.dw_conv.conv.weight        : torch.Size([32, 1, 3, 3])
++separable_convs.0.bn1.weight                 : torch.Size([32])
++separable_convs.0.bn1.bias                   : torch.Size([32])
++separable_convs.0.bn1.running_mean           : torch.Size([32])
++separable_convs.0.bn1.running_var            : torch.Size([32])
++separable_convs.0.bn1.num_batches_tracked    : torch.Size([])
++separable_convs.0.pw_conv.conv.weight        : torch.Size([64, 32, 1, 1])
++separable_convs.0.bn2.weight                 : torch.Size([64])
++separable_convs.0.bn2.bias                   : torch.Size([64])
++separable_convs.0.bn2.running_mean           : torch.Size([64])
++separable_convs.0.bn2.running_var            : torch.Size([64])
++separable_convs.0.bn2.num_batches_tracked    : torch.Size([])
++separable_convs.1.dw_conv.conv.weight        : torch.Size([64, 1, 3, 3])
++separable_convs.1.bn1.weight                 : torch.Size([64])
++separable_convs.1.bn1.bias                   : torch.Size([64])
++separable_convs.1.bn1.running_mean           : torch.Size([64])
++separable_convs.1.bn1.running_var            : torch.Size([64])
++separable_convs.1.bn1.num_batches_tracked    : torch.Size([])
++separable_convs.1.pw_conv.conv.weight        : torch.Size([128, 64, 1, 1])
++separable_convs.1.bn2.weight                 : torch.Size([128])
++separable_convs.1.bn2.bias                   : torch.Size([128])
++separable_convs.1.bn2.running_mean           : torch.Size([128])
++separable_convs.1.bn2.running_var            : torch.Size([128])
++separable_convs.1.bn2.num_batches_tracked    : torch.Size([])
++separable_convs.2.dw_conv.conv.weight        : torch.Size([128, 1, 3, 3])
++separable_convs.2.bn1.weight                 : torch.Size([128])
++separable_convs.2.bn1.bias                   : torch.Size([128])
++separable_convs.2.bn1.running_mean           : torch.Size([128])
++separable_convs.2.bn1.running_var            : torch.Size([128])
++separable_convs.2.bn1.num_batches_tracked    : torch.Size([])
++separable_convs.2.pw_conv.conv.weight        : torch.Size([128, 128, 1, 1])
++separable_convs.2.bn2.weight                 : torch.Size([128])
++separable_convs.2.bn2.bias                   : torch.Size([128])
++separable_convs.2.bn2.running_mean           : torch.Size([128])
++separable_convs.2.bn2.running_var            : torch.Size([128])
++separable_convs.2.bn2.num_batches_tracked    : torch.Size([])
++separable_convs.3.dw_conv.conv.weight        : torch.Size([128, 1, 3, 3])
++separable_convs.3.bn1.weight                 : torch.Size([128])
++separable_convs.3.bn1.bias                   : torch.Size([128])
++separable_convs.3.bn1.running_mean           : torch.Size([128])
++separable_convs.3.bn1.running_var            : torch.Size([128])
++separable_convs.3.bn1.num_batches_tracked    : torch.Size([])
++separable_convs.3.pw_conv.conv.weight        : torch.Size([256, 128, 1, 1])
++separable_convs.3.bn2.weight                 : torch.Size([256])
++separable_convs.3.bn2.bias                   : torch.Size([256])
++separable_convs.3.bn2.running_mean           : torch.Size([256])
++separable_convs.3.bn2.running_var            : torch.Size([256])
++separable_convs.3.bn2.num_batches_tracked    : torch.Size([])
++separable_convs.4.dw_conv.conv.weight        : torch.Size([256, 1, 3, 3])
++separable_convs.4.bn1.weight                 : torch.Size([256])
++separable_convs.4.bn1.bias                   : torch.Size([256])
++separable_convs.4.bn1.running_mean           : torch.Size([256])
++separable_convs.4.bn1.running_var            : torch.Size([256])
++separable_convs.4.bn1.num_batches_tracked    : torch.Size([])
++separable_convs.4.pw_conv.conv.weight        : torch.Size([256, 256, 1, 1])
++separable_convs.4.bn2.weight                 : torch.Size([256])
++separable_convs.4.bn2.bias                   : torch.Size([256])
++separable_convs.4.bn2.running_mean           : torch.Size([256])
++separable_convs.4.bn2.running_var            : torch.Size([256])
++separable_convs.4.bn2.num_batches_tracked    : torch.Size([])
++separable_convs.5.dw_conv.conv.weight        : torch.Size([256, 1, 3, 3])
++separable_convs.5.bn1.weight                 : torch.Size([256])
++separable_convs.5.bn1.bias                   : torch.Size([256])
++separable_convs.5.bn1.running_mean           : torch.Size([256])
++separable_convs.5.bn1.running_var            : torch.Size([256])
++separable_convs.5.bn1.num_batches_tracked    : torch.Size([])
++separable_convs.5.pw_conv.conv.weight        : torch.Size([512, 256, 1, 1])
++separable_convs.5.bn2.weight                 : torch.Size([512])
++separable_convs.5.bn2.bias                   : torch.Size([512])
++separable_convs.5.bn2.running_mean           : torch.Size([512])
++separable_convs.5.bn2.running_var            : torch.Size([512])
++separable_convs.5.bn2.num_batches_tracked    : torch.Size([])
++separable_convs.6.dw_conv.conv.weight        : torch.Size([512, 1, 3, 3])
++separable_convs.6.bn1.weight                 : torch.Size([512])
++separable_convs.6.bn1.bias                   : torch.Size([512])
++separable_convs.6.bn1.running_mean           : torch.Size([512])
++separable_convs.6.bn1.running_var            : torch.Size([512])
++separable_convs.6.bn1.num_batches_tracked    : torch.Size([])
++separable_convs.6.pw_conv.conv.weight        : torch.Size([512, 512, 1, 1])
++separable_convs.6.bn2.weight                 : torch.Size([512])
++separable_convs.6.bn2.bias                   : torch.Size([512])
++separable_convs.6.bn2.running_mean           : torch.Size([512])
++separable_convs.6.bn2.running_var            : torch.Size([512])
++separable_convs.6.bn2.num_batches_tracked    : torch.Size([])
++separable_convs.7.dw_conv.conv.weight        : torch.Size([512, 1, 3, 3])
++separable_convs.7.bn1.weight                 : torch.Size([512])
++separable_convs.7.bn1.bias                   : torch.Size([512])
++separable_convs.7.bn1.running_mean           : torch.Size([512])
++separable_convs.7.bn1.running_var            : torch.Size([512])
++separable_convs.7.bn1.num_batches_tracked    : torch.Size([])
++separable_convs.7.pw_conv.conv.weight        : torch.Size([512, 512, 1, 1])
++separable_convs.7.bn2.weight                 : torch.Size([512])
++separable_convs.7.bn2.bias                   : torch.Size([512])
++separable_convs.7.bn2.running_mean           : torch.Size([512])
++separable_convs.7.bn2.running_var            : torch.Size([512])
++separable_convs.7.bn2.num_batches_tracked    : torch.Size([])
++separable_convs.8.dw_conv.conv.weight        : torch.Size([512, 1, 3, 3])
++separable_convs.8.bn1.weight                 : torch.Size([512])
++separable_convs.8.bn1.bias                   : torch.Size([512])
++separable_convs.8.bn1.running_mean           : torch.Size([512])
++separable_convs.8.bn1.running_var            : torch.Size([512])
++separable_convs.8.bn1.num_batches_tracked    : torch.Size([])
++separable_convs.8.pw_conv.conv.weight        : torch.Size([512, 512, 1, 1])
++separable_convs.8.bn2.weight                 : torch.Size([512])
++separable_convs.8.bn2.bias                   : torch.Size([512])
++separable_convs.8.bn2.running_mean           : torch.Size([512])
++separable_convs.8.bn2.running_var            : torch.Size([512])
++separable_convs.8.bn2.num_batches_tracked    : torch.Size([])
++separable_convs.9.dw_conv.conv.weight        : torch.Size([512, 1, 3, 3])
++separable_convs.9.bn1.weight                 : torch.Size([512])
++separable_convs.9.bn1.bias                   : torch.Size([512])
++separable_convs.9.bn1.running_mean           : torch.Size([512])
++separable_convs.9.bn1.running_var            : torch.Size([512])
++separable_convs.9.bn1.num_batches_tracked    : torch.Size([])
++separable_convs.9.pw_conv.conv.weight        : torch.Size([512, 512, 1, 1])
++separable_convs.9.bn2.weight                 : torch.Size([512])
++separable_convs.9.bn2.bias                   : torch.Size([512])
++separable_convs.9.bn2.running_mean           : torch.Size([512])
++separable_convs.9.bn2.running_var            : torch.Size([512])
++separable_convs.9.bn2.num_batches_tracked    : torch.Size([])
++separable_convs.10.dw_conv.conv.weight       : torch.Size([512, 1, 3, 3])
++separable_convs.10.bn1.weight                : torch.Size([512])
++separable_convs.10.bn1.bias                  : torch.Size([512])
++separable_convs.10.bn1.running_mean          : torch.Size([512])
++separable_convs.10.bn1.running_var           : torch.Size([512])
++separable_convs.10.bn1.num_batches_tracked   : torch.Size([])
++separable_convs.10.pw_conv.conv.weight       : torch.Size([512, 512, 1, 1])
++separable_convs.10.bn2.weight                : torch.Size([512])
++separable_convs.10.bn2.bias                  : torch.Size([512])
++separable_convs.10.bn2.running_mean          : torch.Size([512])
++separable_convs.10.bn2.running_var           : torch.Size([512])
++separable_convs.10.bn2.num_batches_tracked   : torch.Size([])
++separable_convs.11.dw_conv.conv.weight       : torch.Size([512, 1, 3, 3])
++separable_convs.11.bn1.weight                : torch.Size([512])
++separable_convs.11.bn1.bias                  : torch.Size([512])
++separable_convs.11.bn1.running_mean          : torch.Size([512])
++separable_convs.11.bn1.running_var           : torch.Size([512])
++separable_convs.11.bn1.num_batches_tracked   : torch.Size([])
++separable_convs.11.pw_conv.conv.weight       : torch.Size([1024, 512, 1, 1])
++separable_convs.11.bn2.weight                : torch.Size([1024])
++separable_convs.11.bn2.bias                  : torch.Size([1024])
++separable_convs.11.bn2.running_mean          : torch.Size([1024])
++separable_convs.11.bn2.running_var           : torch.Size([1024])
++separable_convs.11.bn2.num_batches_tracked   : torch.Size([])
++separable_convs.12.dw_conv.conv.weight       : torch.Size([1024, 1, 3, 3])
++separable_convs.12.bn1.weight                : torch.Size([1024])
++separable_convs.12.bn1.bias                  : torch.Size([1024])
++separable_convs.12.bn1.running_mean          : torch.Size([1024])
++separable_convs.12.bn1.running_var           : torch.Size([1024])
++separable_convs.12.bn1.num_batches_tracked   : torch.Size([])
++separable_convs.12.pw_conv.conv.weight       : torch.Size([1024, 1024, 1, 1])
++separable_convs.12.bn2.weight                : torch.Size([1024])
++separable_convs.12.bn2.bias                  : torch.Size([1024])
++separable_convs.12.bn2.running_mean          : torch.Size([1024])
++separable_convs.12.bn2.running_var           : torch.Size([1024])
++separable_convs.12.bn2.num_batches_tracked   : torch.Size([])
++final.3.weight                               : torch.Size([1000, 1024])
++final.3.bias                                 : torch.Size([1000])
+\ No newline at end of file
+Index: notes/pt_mobilenet_summary.txt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/notes/pt_mobilenet_summary.txt b/notes/pt_mobilenet_summary.txt
+new file mode 100644
+--- /dev/null	(date 1655717281849)
++++ b/notes/pt_mobilenet_summary.txt	(date 1655717281849)
+@@ -0,0 +1,116 @@
++==========================================================================================
++Layer (type:depth-idx)                   Output Shape              Param #
++==========================================================================================
++├─Sequential: 1-1                        [-1, 32, 112, 112]        --
++|    └─AdaptiveAvgPool2d: 2-1            [-1, 3, 224, 224]         --
++|    └─Conv2d: 2-2                       [-1, 32, 112, 112]        864
++|    └─BatchNorm2d: 2-3                  [-1, 32, 112, 112]        64
++|    └─ReLU: 2-4                         [-1, 32, 112, 112]        --
++├─Sequential: 1-2                        [-1, 1024, 7, 7]          --
++|    └─SeparableConv: 2-5                [-1, 64, 112, 112]        --
++|    |    └─DepthWiseConv: 3-1           [-1, 32, 112, 112]        288
++|    |    └─BatchNorm2d: 3-2             [-1, 32, 112, 112]        64
++|    |    └─ReLU: 3-3                    [-1, 32, 112, 112]        --
++|    |    └─PointWiseConv: 3-4           [-1, 64, 112, 112]        2,048
++|    |    └─BatchNorm2d: 3-5             [-1, 64, 112, 112]        128
++|    |    └─ReLU: 3-6                    [-1, 64, 112, 112]        --
++|    └─SeparableConv: 2-6                [-1, 128, 56, 56]         --
++|    |    └─DepthWiseConv: 3-7           [-1, 64, 56, 56]          576
++|    |    └─BatchNorm2d: 3-8             [-1, 64, 56, 56]          128
++|    |    └─ReLU: 3-9                    [-1, 64, 56, 56]          --
++|    |    └─PointWiseConv: 3-10          [-1, 128, 56, 56]         8,192
++|    |    └─BatchNorm2d: 3-11            [-1, 128, 56, 56]         256
++|    |    └─ReLU: 3-12                   [-1, 128, 56, 56]         --
++|    └─SeparableConv: 2-7                [-1, 128, 56, 56]         --
++|    |    └─DepthWiseConv: 3-13          [-1, 128, 56, 56]         1,152
++|    |    └─BatchNorm2d: 3-14            [-1, 128, 56, 56]         256
++|    |    └─ReLU: 3-15                   [-1, 128, 56, 56]         --
++|    |    └─PointWiseConv: 3-16          [-1, 128, 56, 56]         16,384
++|    |    └─BatchNorm2d: 3-17            [-1, 128, 56, 56]         256
++|    |    └─ReLU: 3-18                   [-1, 128, 56, 56]         --
++|    └─SeparableConv: 2-8                [-1, 256, 28, 28]         --
++|    |    └─DepthWiseConv: 3-19          [-1, 128, 28, 28]         1,152
++|    |    └─BatchNorm2d: 3-20            [-1, 128, 28, 28]         256
++|    |    └─ReLU: 3-21                   [-1, 128, 28, 28]         --
++|    |    └─PointWiseConv: 3-22          [-1, 256, 28, 28]         32,768
++|    |    └─BatchNorm2d: 3-23            [-1, 256, 28, 28]         512
++|    |    └─ReLU: 3-24                   [-1, 256, 28, 28]         --
++|    └─SeparableConv: 2-9                [-1, 256, 28, 28]         --
++|    |    └─DepthWiseConv: 3-25          [-1, 256, 28, 28]         2,304
++|    |    └─BatchNorm2d: 3-26            [-1, 256, 28, 28]         512
++|    |    └─ReLU: 3-27                   [-1, 256, 28, 28]         --
++|    |    └─PointWiseConv: 3-28          [-1, 256, 28, 28]         65,536
++|    |    └─BatchNorm2d: 3-29            [-1, 256, 28, 28]         512
++|    |    └─ReLU: 3-30                   [-1, 256, 28, 28]         --
++|    └─SeparableConv: 2-10               [-1, 512, 14, 14]         --
++|    |    └─DepthWiseConv: 3-31          [-1, 256, 14, 14]         2,304
++|    |    └─BatchNorm2d: 3-32            [-1, 256, 14, 14]         512
++|    |    └─ReLU: 3-33                   [-1, 256, 14, 14]         --
++|    |    └─PointWiseConv: 3-34          [-1, 512, 14, 14]         131,072
++|    |    └─BatchNorm2d: 3-35            [-1, 512, 14, 14]         1,024
++|    |    └─ReLU: 3-36                   [-1, 512, 14, 14]         --
++|    └─SeparableConv: 2-11               [-1, 512, 14, 14]         --
++|    |    └─DepthWiseConv: 3-37          [-1, 512, 14, 14]         4,608
++|    |    └─BatchNorm2d: 3-38            [-1, 512, 14, 14]         1,024
++|    |    └─ReLU: 3-39                   [-1, 512, 14, 14]         --
++|    |    └─PointWiseConv: 3-40          [-1, 512, 14, 14]         262,144
++|    |    └─BatchNorm2d: 3-41            [-1, 512, 14, 14]         1,024
++|    |    └─ReLU: 3-42                   [-1, 512, 14, 14]         --
++|    └─SeparableConv: 2-12               [-1, 512, 14, 14]         --
++|    |    └─DepthWiseConv: 3-43          [-1, 512, 14, 14]         4,608
++|    |    └─BatchNorm2d: 3-44            [-1, 512, 14, 14]         1,024
++|    |    └─ReLU: 3-45                   [-1, 512, 14, 14]         --
++|    |    └─PointWiseConv: 3-46          [-1, 512, 14, 14]         262,144
++|    |    └─BatchNorm2d: 3-47            [-1, 512, 14, 14]         1,024
++|    |    └─ReLU: 3-48                   [-1, 512, 14, 14]         --
++|    └─SeparableConv: 2-13               [-1, 512, 14, 14]         --
++|    |    └─DepthWiseConv: 3-49          [-1, 512, 14, 14]         4,608
++|    |    └─BatchNorm2d: 3-50            [-1, 512, 14, 14]         1,024
++|    |    └─ReLU: 3-51                   [-1, 512, 14, 14]         --
++|    |    └─PointWiseConv: 3-52          [-1, 512, 14, 14]         262,144
++|    |    └─BatchNorm2d: 3-53            [-1, 512, 14, 14]         1,024
++|    |    └─ReLU: 3-54                   [-1, 512, 14, 14]         --
++|    └─SeparableConv: 2-14               [-1, 512, 14, 14]         --
++|    |    └─DepthWiseConv: 3-55          [-1, 512, 14, 14]         4,608
++|    |    └─BatchNorm2d: 3-56            [-1, 512, 14, 14]         1,024
++|    |    └─ReLU: 3-57                   [-1, 512, 14, 14]         --
++|    |    └─PointWiseConv: 3-58          [-1, 512, 14, 14]         262,144
++|    |    └─BatchNorm2d: 3-59            [-1, 512, 14, 14]         1,024
++|    |    └─ReLU: 3-60                   [-1, 512, 14, 14]         --
++|    └─SeparableConv: 2-15               [-1, 512, 14, 14]         --
++|    |    └─DepthWiseConv: 3-61          [-1, 512, 14, 14]         4,608
++|    |    └─BatchNorm2d: 3-62            [-1, 512, 14, 14]         1,024
++|    |    └─ReLU: 3-63                   [-1, 512, 14, 14]         --
++|    |    └─PointWiseConv: 3-64          [-1, 512, 14, 14]         262,144
++|    |    └─BatchNorm2d: 3-65            [-1, 512, 14, 14]         1,024
++|    |    └─ReLU: 3-66                   [-1, 512, 14, 14]         --
++|    └─SeparableConv: 2-16               [-1, 1024, 7, 7]          --
++|    |    └─DepthWiseConv: 3-67          [-1, 512, 7, 7]           4,608
++|    |    └─BatchNorm2d: 3-68            [-1, 512, 7, 7]           1,024
++|    |    └─ReLU: 3-69                   [-1, 512, 7, 7]           --
++|    |    └─PointWiseConv: 3-70          [-1, 1024, 7, 7]          524,288
++|    |    └─BatchNorm2d: 3-71            [-1, 1024, 7, 7]          2,048
++|    |    └─ReLU: 3-72                   [-1, 1024, 7, 7]          --
++|    └─SeparableConv: 2-17               [-1, 1024, 7, 7]          --
++|    |    └─DepthWiseConv: 3-73          [-1, 1024, 7, 7]          9,216
++|    |    └─BatchNorm2d: 3-74            [-1, 1024, 7, 7]          2,048
++|    |    └─ReLU: 3-75                   [-1, 1024, 7, 7]          --
++|    |    └─PointWiseConv: 3-76          [-1, 1024, 7, 7]          1,048,576
++|    |    └─BatchNorm2d: 3-77            [-1, 1024, 7, 7]          2,048
++|    |    └─ReLU: 3-78                   [-1, 1024, 7, 7]          --
++├─Sequential: 1-3                        [-1, 1000]                --
++|    └─AvgPool2d: 2-18                   [-1, 1024, 1, 1]          --
++|    └─Dropout: 2-19                     [-1, 1024, 1, 1]          --
++|    └─Conv2d: 2-20                      [-1, 1000, 1, 1]          1,025,000
++|    └─Flatten: 2-21                     [-1, 1000]                --
++==========================================================================================
++Total params: 4,231,976
++Trainable params: 4,231,976
++Non-trainable params: 0
++Total mult-adds (M): 579.35
++==========================================================================================
++Input size (MB): 0.57
++Forward/backward pass size (MB): 76.95
++Params size (MB): 16.14
++Estimated Total Size (MB): 93.67
++==========================================================================================
+\ No newline at end of file
+Index: convert.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/convert.py b/convert.py
+new file mode 100644
+--- /dev/null	(date 1655716502237)
++++ b/convert.py	(date 1655716502237)
+@@ -0,0 +1,206 @@
++"""
++convert official tensorflow pretrained model to this implementation
++"""
++from pathlib import Path
++
++import torch
++import tensorflow as tf
++import numpy as np
++
++from model import MobileNet
++
++
++class Converter:
++    def __init__(self, alpha=1.0, input_resolution=224, num_class=1000):
++        self.alpha = alpha
++        self.input_resolution = input_resolution
++        self.num_class = num_class
++        self._model = None
++        self._state_dict = dict()
++
++    def build_tf_model(self, alpha=None, input_resolution=None, num_class=None):
++        if alpha is not None:
++            self.alpha = alpha
++        if input_resolution is not None:
++            self.input_resolution = input_resolution
++        if num_class is not None:
++            self.num_class = num_class
++        if self.input_resolution != 224:
++            raise Exception("Not implemented for input_resolution != 224")
++
++        self._model = tf.keras.applications.mobilenet.MobileNet(
++            input_shape=(self.input_resolution, self.input_resolution, 3),
++            alpha=self.alpha,
++            depth_multiplier=1,
++            dropout=0.001,
++            include_top=True,
++            weights='imagenet',
++            input_tensor=None,
++            pooling=None,
++            classes=self.num_class,
++            classifier_activation='softmax',
++        )
++
++    def to_pytorch_state(self):
++        self._state_dict = dict()
++
++        # initial
++        self._tf2pt_conv("conv1", "initial.1")
++        self._tf2pt_bn("conv1_bn", "initial.2")
++
++        # separable_convs
++        for tf_idx, pt_idx in zip(range(1, 14), range(13)):
++            self._tf2pt_conv_dw(f"conv_dw_{tf_idx}", f"separable_convs.{pt_idx}.dw_conv.conv")
++            self._tf2pt_bn(f"conv_dw_{tf_idx}_bn", f"separable_convs.{pt_idx}.bn1")
++            self._tf2pt_conv(f"conv_pw_{tf_idx}", f"separable_convs.{pt_idx}.pw_conv.conv")
++            self._tf2pt_bn(f"conv_pw_{tf_idx}_bn", f"separable_convs.{pt_idx}.bn2")
++
++        # final
++        self._tf2pt_fc("conv_preds", "final.3")
++
++        for param_tensor in self._state_dict:
++            print(f"{param_tensor:<45}: {self._state_dict[param_tensor].size()}")
++
++    def save_to(self, out_dir):
++        state = {"epoch": -1, "alpha": self.alpha, "input_resolution": self.input_resolution,
++                 "num_class": self.num_class, "state_dict": self._state_dict}
++        out_path = Path(out_dir)
++        out_path.mkdir(exist_ok=True, parents=True)
++        save_to = out_path / f"mobile_net-a{self.alpha * 100:3d}-r{self.input_resolution:d}" \
++                             f"-c{self.num_class}-e{0:04d}.pth"
++        torch.save(state, str(save_to))
++
++    def _tf2pt_conv(self, tf_layer: str, pt_layer: str):
++        # conv2d kernel shape: pytorch(OUT_C, IN_C, H, W), tensorflow(H, W, IN_C, OUT_C)
++        tf_kernel = self._model.get_layer(tf_layer).get_weights()[0]
++        self._state_dict[f"{pt_layer}.weight"] = torch.from_numpy(np.transpose(tf_kernel, (3, 2, 0, 1)))
++
++    def _tf2pt_conv_dw(self, tf_layer: str, pt_layer: str):
++        # conv2d kernel shape: pytorch(OUT_C, IN_C, H, W), tensorflow(H, W, OUT_C, IN_C)
++        tf_kernel = self._model.get_layer(tf_layer).get_weights()[0]
++        self._state_dict[f"{pt_layer}.weight"] = torch.from_numpy(np.transpose(tf_kernel, (2, 3, 0, 1)))
++
++    def _tf2pt_bn(self, tf_layer: str, pt_layer: str):
++        # tf weights: [gamma, beta, moving_mean, moving_variance]
++        # pt params : [.weight, .bias, .running_mean, .running_var, .num_batches_tracked]
++        tf_weights = self._model.get_layer(tf_layer).get_weights()
++        self._state_dict[f"{pt_layer}.weight"] = torch.from_numpy(tf_weights[0])
++        self._state_dict[f"{pt_layer}.bias"] = torch.from_numpy(tf_weights[1])
++        self._state_dict[f"{pt_layer}.running_mean"] = torch.from_numpy(tf_weights[2])
++        self._state_dict[f"{pt_layer}.running_var"] = torch.from_numpy(tf_weights[3])
++        self._state_dict[f"{pt_layer}.num_batches_tracked"] = torch.tensor(0)
++
++    def _tf2pt_fc(self, tf_layer: str, pt_layer: str):
++        # tf weights: [kernel, bias]
++        # pt params : [.weight, .bias]
++        tf_weights = self._model.get_layer(tf_layer).get_weights()
++        self._state_dict[f"{pt_layer}.weight"] = torch.from_numpy(tf_weights[0])
++        self._state_dict[f"{pt_layer}.bias"] = torch.from_numpy(tf_weights[1])
++
++
++def convert_to_pytorch(alpha=1.0, input_resolution=224, num_class=1000):
++    if input_resolution != 224:
++        raise Exception("Not implemented for input_resolution != 224")
++    epoch = -1
++
++    model = tf.keras.applications.mobilenet.MobileNet(
++        input_shape=(input_resolution, input_resolution, 3),
++        alpha=alpha,
++        depth_multiplier=1,
++        dropout=0.001,
++        include_top=True,
++        weights='imagenet',
++        input_tensor=None,
++        pooling=None,
++        classes=num_class,
++        classifier_activation='softmax',
++    )
++    network_state = build_pytorch_network_state(model)
++
++    state = {"epoch": epoch, "alpha": alpha, "input_resolution": input_resolution,
++             "num_class": num_class, "state_dict": network_state}
++
++
++def build_pytorch_network_state(model):
++    # build mobilenet state_dict from tensorflow model
++    network_state = dict()
++    network_state["initial.1.weight"] = _tf2pt_conv2d(model.get_layer("conv1").get_weights()[0])
++
++    return network_state
++
++
++def _tf2pt_conv2d(kernel):
++    return np.transpose(kernel, (2, 3, 0, 1))
++
++
++def peek_pytorch_state():
++    net = MobileNet(1000)
++    # net = torch.nn.Conv2d(5, 32, (2, 3))
++    network_state = net.state_dict()
++    print("PyTorch model's state_dict:")
++    for param_tensor in network_state:
++        print(f"{param_tensor:<45}: {network_state[param_tensor].size()}")
++
++    print('\n')
++    print(network_state["initial.2.num_batches_tracked"].size())
++
++
++def peek_tensorflow_state():
++    model = tf.keras.applications.mobilenet.MobileNet(
++        input_shape=(224, 224, 3),
++        alpha=1.0,
++        depth_multiplier=1,
++        dropout=0.001,
++        include_top=True,
++        weights='imagenet',
++        input_tensor=None,
++        pooling=None,
++        classes=1000,
++        classifier_activation='softmax',
++    )
++    # model.summary()
++    inputs = tf.keras.Input(shape=(32, 32, 3))
++    x = tf.keras.layers.Conv2D(5, (2, 3))(inputs)
++    outputs = tf.keras.layers.Dense(5, activation=tf.nn.softmax)(x)
++    model = tf.keras.Model(inputs=inputs, outputs=outputs)
++
++    # layer = model.layers[1]
++    # kernel = layer.get_weights()[0]
++    # print(kernel.shape)
++    # print(np.transpose(kernel, (2, 3, 0, 1)).shape)
++
++    for layer in model.layers:
++        to_print = [f"{layer.name:<30}:"]
++        try:
++            to_print += [f" {t.name.split('/')[-1]}{w.shape}" for t, w in zip(layer.weights, layer.get_weights())]
++        except:
++            pass
++        print("".join(to_print))
++
++    # print(model.summary())
++    # print(model.layers[1].weights[0].numpy().shape)
++    # print(model.layers[1].bias)
++    # print(model.get)
++
++
++if __name__ == '__main__':
++    # model = tf.keras.applications.mobilenet.MobileNet(
++    #     input_shape=None,
++    #     alpha=1.0,
++    #     depth_multiplier=1,
++    #     dropout=0.001,
++    #     include_top=True,
++    #     weights='imagenet',
++    #     input_tensor=None,
++    #     pooling=None,
++    #     classes=1000,
++    #     classifier_activation='softmax',
++    # )
++    # build_pytorch_network_state(model)
++
++    # peek_tensorflow_state()
++    # peek_pytorch_state()
++
++    converter = Converter()
++    converter.build_tf_model()
++    converter.to_pytorch_state()
