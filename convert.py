@@ -25,8 +25,14 @@ class ConverterTensorFlow:
         self._state_dict = dict()
 
     def build_tf_model(self):
-        if self.input_resolution != 224:
-            raise Exception("Not implemented for input_resolution != 224")
+        """
+        (input_resolution, alpha) in [128, 160, 192, 224] x [0.25, 0.50, 0.75, 1.0]
+        """
+        if self.alpha not in [0.25, 0.50, 0.75, 1.0]:
+            raise Exception(f"alpha can only be one of 0.25, 0.50, 0.75 or 1.0, but got alpha={self.alpha}")
+        if self.input_resolution not in [128, 160, 192, 224]:
+            raise Exception(f"input_resolution can only be one of 128, 160, 192 or 224, "
+                            f"but got input_resolution={self.input_resolution}")
 
         self._model = tf.keras.applications.mobilenet.MobileNet(
             input_shape=(self.input_resolution, self.input_resolution, 3),
@@ -327,8 +333,8 @@ def main():
     # converter.convert_state()
     # converter.save_to(r".\pretrained")
 
-    converter = ConverterPyTorchV2()
-    converter.build_pt_model()
+    converter = ConverterTensorFlow(alpha=0.5, input_resolution=160)
+    converter.build_tf_model()
     converter.convert_state()
     converter.save_to(r".\pretrained")
 
