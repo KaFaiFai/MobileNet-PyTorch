@@ -6,6 +6,7 @@ User can convert pretrained models **from official TensorFlow implementation** a
 implementation**
 
 ## Examples
+
 Evaluation results on ImageNet   
 The following pretrained models are converted from different sources using `convert.py`
 
@@ -31,9 +32,17 @@ The following pretrained models are converted from different sources using `conv
 
 [net3_src]:(https://drive.google.com/file/d/1VExkcO5r7g3-jn4nu_Jhz5__pj4Zxqz8/view?usp=sharing)
 
+| Model                                              | Top 1 Accuracy | Top 5 Accuracy | F1 score |
+|----------------------------------------------------|----------------|----------------|----------|
+| [MobileNet][net1] <br/>from [TensorFlow][net1_src] | 64.21%         | 85.12%         | 0.6411   |
+| [MobileNet][net2] <br/>from [wjc852456][net2_src]  | 67.95%         | 88.13%         | 0.6762   |
+| [MobileNetV2][net3] <br/>from [PyTorch][net3_src]  | 69.84%         | 89.26%         | 0.6952   |
+
+[MobileNet][net1]
+
 ## Todo
 
-1. ~~implement conversion for different res, alpha for **MobileNet**~~  :white_check_mark:  
+1. ~~implement conversion for different res, alpha for **MobileNet**~~  :white_check_mark:
 2. implement conversion for **MobileNetV2**
 3. add **MobileNetV3** and **MobileViT**
 4. allows loading pretrained model with different classes
