@@ -17,6 +17,7 @@ The following pretrained models are converted from different sources using `conv
 
 
 [MobileNet][net1]
+[MobileNet](https://drive.google.com/file/d/1gFH0c6YregiiFctTFBIjr_7ffHZIUfxp/view?usp=sharing)
 
 [net1]: (https://drive.google.com/file/d/1gFH0c6YregiiFctTFBIjr_7ffHZIUfxp/view?usp=sharing)
 
