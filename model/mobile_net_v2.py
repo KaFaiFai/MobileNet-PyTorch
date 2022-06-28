@@ -88,7 +88,8 @@ class MobileNetV2(nn.Module):
         input_res = int(input_resolution)
         final_res = int(input_res / (2 ** 5))
         expansion_factors = [1, 6, 6, 6, 6, 6, 6]
-        num_channels = [int(c * alpha) for c in (32, 16, 24, 32, 64, 96, 160, 320)]
+        # somehow alpha doesn't apply to the 2nd and 3rd channel
+        num_channels = [int(32 * alpha)] + [16, 24] + [int(c * alpha) for c in (32, 64, 96, 160, 320)]
         repeats = [1, 2, 3, 4, 3, 3, 1]
         strides = [1, 2, 2, 2, 1, 2, 1]
         assert len(expansion_factors) == (len(num_channels) - 1) == len(repeats) == len(strides)
