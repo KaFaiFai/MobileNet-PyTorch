@@ -9,6 +9,11 @@ from script.utils import defaultdict_none
 
 class ConverterTensorFlowV2:
     def __init__(self, alpha=1.0, input_resolution=224):
+        """
+
+        :param alpha: one of [0.35, 0.50, 0.75, 1.0, 1.3, 1.4]
+        :param input_resolution: one of [96, 128, 160, 192, 224]
+        """
         self.repeats = [1, 2, 3, 4, 3, 3, 1]
         self.alpha = alpha
         self.input_resolution = input_resolution
@@ -21,14 +26,14 @@ class ConverterTensorFlowV2:
         """
         (input_resolution, alpha) in [96, 128, 160, 192, 224] x [0.35, 0.50, 0.75, 1.0, 1.3, 1.4]
         """
-        if self.alpha != 1.0 and self.input_resolution != 224:
-            raise NotImplementedError("not implemented for alpha != 1 and input_res != 224")
-        # if self.alpha not in [0.35, 0.50, 0.75, 1.0, 1.3, 1.4]:
-        #     raise Exception(f"alpha can only be one of 0.35, 0.50, 0.75, 1.0, 1.3 or 1.4, "
-        #                     f"but got alpha={self.alpha}")
-        # if self.input_resolution not in [96, 128, 160, 192, 224]:
-        #     raise Exception(f"input_resolution can only be one of 96, 128, 160, 192 or 224, "
-        #                     f"but got input_resolution={self.input_resolution}")
+        # if self.alpha != 1.0 and self.input_resolution != 224:
+        #     raise NotImplementedError("not implemented for alpha != 1 and input_res != 224")
+        if self.alpha not in [0.35, 0.50, 0.75, 1.0, 1.3, 1.4]:
+            raise Exception(f"alpha can only be one of 0.35, 0.50, 0.75, 1.0, 1.3 or 1.4, "
+                            f"but got alpha={self.alpha}")
+        if self.input_resolution not in [96, 128, 160, 192, 224]:
+            raise Exception(f"input_resolution can only be one of 96, 128, 160, 192 or 224, "
+                            f"but got input_resolution={self.input_resolution}")
 
         self._model = tf.keras.applications.mobilenet_v2.MobileNetV2(
             input_shape=None,
@@ -137,7 +142,7 @@ class ConverterTensorFlowV2:
 
 
 def test():
-    converter = ConverterTensorFlowV2()
+    converter = ConverterTensorFlowV2(alpha=0.75, input_resolution=160)
     converter.build_tf_model()
     converter.convert_state()
     converter.save_to(r".\pretrained")

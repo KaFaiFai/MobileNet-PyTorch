@@ -15,9 +15,6 @@ from model import *
 from converter import *
 
 
-
-
-
 def peek_pytorch_state():
     network = MobileNetV2(1000)
     # network = mobilenet_v2(pretrained=True)
