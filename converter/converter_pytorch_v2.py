@@ -29,25 +29,25 @@ class ConverterPyTorchV2:
         self._pt2my_bn("features.0.1", "initial.2")
 
         # bottlenecks, first layer is different
-        self._pt2my_conv(f"features.1.conv.0.0", f"separable_convs.0.block.0.dw_conv2.conv")
-        self._pt2my_bn(f"features.1.conv.0.1", f"separable_convs.0.block.0.bn2")
-        self._pt2my_conv(f"features.1.conv.1", f"separable_convs.0.block.0.pw_conv3.conv")
-        self._pt2my_bn(f"features.1.conv.2", f"separable_convs.0.block.0.bn3")
+        self._pt2my_conv(f"features.1.conv.0.0", f"bottlenecks.0.block.0.dw_conv2.conv")
+        self._pt2my_bn(f"features.1.conv.0.1", f"bottlenecks.0.block.0.bn2")
+        self._pt2my_conv(f"features.1.conv.1", f"bottlenecks.0.block.0.pw_conv3.conv")
+        self._pt2my_bn(f"features.1.conv.2", f"bottlenecks.0.block.0.bn3")
         pt_idx = 2
         for my_idx1 in range(1, len(self.repeats)):
             for my_idx2 in range(self.repeats[my_idx1]):
                 self._pt2my_conv(f"features.{pt_idx}.conv.0.0",
-                                 f"separable_convs.{my_idx1}.block.{my_idx2}.pw_conv1.conv")
+                                 f"bottlenecks.{my_idx1}.block.{my_idx2}.pw_conv1.conv")
                 self._pt2my_bn(f"features.{pt_idx}.conv.0.1",
-                               f"separable_convs.{my_idx1}.block.{my_idx2}.bn1")
+                               f"bottlenecks.{my_idx1}.block.{my_idx2}.bn1")
                 self._pt2my_conv(f"features.{pt_idx}.conv.1.0",
-                                 f"separable_convs.{my_idx1}.block.{my_idx2}.dw_conv2.conv")
+                                 f"bottlenecks.{my_idx1}.block.{my_idx2}.dw_conv2.conv")
                 self._pt2my_bn(f"features.{pt_idx}.conv.1.1",
-                               f"separable_convs.{my_idx1}.block.{my_idx2}.bn2")
+                               f"bottlenecks.{my_idx1}.block.{my_idx2}.bn2")
                 self._pt2my_conv(f"features.{pt_idx}.conv.2",
-                                 f"separable_convs.{my_idx1}.block.{my_idx2}.pw_conv3.conv")
+                                 f"bottlenecks.{my_idx1}.block.{my_idx2}.pw_conv3.conv")
                 self._pt2my_bn(f"features.{pt_idx}.conv.3",
-                               f"separable_convs.{my_idx1}.block.{my_idx2}.bn3")
+                               f"bottlenecks.{my_idx1}.block.{my_idx2}.bn3")
                 pt_idx += 1
 
         # final

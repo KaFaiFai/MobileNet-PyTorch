@@ -100,7 +100,7 @@ class MobileNetV2(nn.Module):
         for expansion_factor, in_channels, out_channels, repeat, stride in zip(expansion_factors, num_channels[:-1],
                                                                                num_channels[1:], repeats, strides):
             bottlenecks.append(Bottleneck(in_channels, out_channels, stride, expansion_factor, repeat))
-        self.separable_convs = nn.Sequential(*bottlenecks)
+        self.bottlenecks = nn.Sequential(*bottlenecks)
 
         self.final = nn.Sequential(
             PointWiseConv(num_channels[-1], 1280),
@@ -117,7 +117,7 @@ class MobileNetV2(nn.Module):
         # (B, 3, H, W) -> (B, num_class)
         # no softmax implemented
         x = self.initial(x)
-        x = self.separable_convs(x)
+        x = self.bottlenecks(x)
         x = self.final(x)
         return x
 

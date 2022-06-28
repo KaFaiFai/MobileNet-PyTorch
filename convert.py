@@ -20,8 +20,7 @@ from converter import *
 
 def peek_pytorch_state():
     network = MobileNetV2(1000)
-    network_state = network.state_dict()
-    network = mobilenet_v2(pretrained=True)
+    # network = mobilenet_v2(pretrained=True)
     network_state = network.state_dict()
 
     # pretrained_model_path = r"C:\_Project\Pycharm Projects\MobileNet\pretrained\mobilenet_sgd_68.848.pth.tar"
@@ -103,17 +102,17 @@ def main():
     # build_pytorch_network_state(model)
 
     # peek_tensorflow_state()
-    # peek_pytorch_state()
+    peek_pytorch_state()
 
     # converter = ConverterTensorFlow()
     # converter.build_tf_model()
     # converter.convert_state()
     # converter.save_to(r".\pretrained")
 
-    converter = ConverterTensorFlow(alpha=0.5, input_resolution=160)
-    converter.build_tf_model()
-    converter.convert_state()
-    converter.save_to(r".\pretrained")
+    # converter = ConverterTensorFlow(alpha=0.5, input_resolution=160)
+    # converter.build_tf_model()
+    # converter.convert_state()
+    # converter.save_to(r".\pretrained")
 
     # model_path = r".\pretrained\wjc852456\mobilenet_sgd_rmsprop_69.526.tar"
     # out_dir = r".\pretrained"
