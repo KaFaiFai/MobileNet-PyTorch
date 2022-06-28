@@ -90,10 +90,10 @@ class ConverterTensorFlowV2:
         self._tf2my_bn("Conv_1_bn", "final.1")
         self._tf2my_fc("predictions", "final.6")
 
-        for param_tensor in self._state_dict:
-            print(f"{param_tensor:<60}: {self._state_dict[param_tensor].size()}")
+        # for param_tensor in self._state_dict:
+        #     print(f"{param_tensor:<60}: {self._state_dict[param_tensor].size()}")
 
-    def save_to(self, out_dir, name="tf"):
+    def save_to(self, out_dir, name="tfv2"):
         assert self._state_dict is not None, "state is not loaded yet. Please call convert_state() first"
 
         state = defaultdict_none({"epoch": -1, "alpha": self.alpha, "input_resolution": self.input_resolution,
@@ -140,6 +140,7 @@ def test():
     converter = ConverterTensorFlowV2()
     converter.build_tf_model()
     converter.convert_state()
+    converter.save_to(r".\pretrained")
 
 
 if __name__ == '__main__':
