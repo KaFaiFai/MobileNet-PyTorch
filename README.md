@@ -19,12 +19,13 @@ The following pretrained models are converted from different sources using `conv
 ## Todo
 
 1. ~~implement conversion for different res, alpha for **MobileNet**~~  :white_check_mark:
-2. implement conversion for **MobileNetV2**
-3. add **MobileNetV3**
-4. better abstract the save model function
-5. allows loading pretrained model with different classes
-6. clean up convert.py codes + accept command arguments
-7. complete this README.md file
-8. support quick start in Google Colab
-9. apply tqdm to display progress
+2. ~~support alpha and input resolution hyperparameters in **MobileNetV2**~~  :white_check_mark:
+3. implement conversion for **MobileNetV2**
+4. add **MobileNetV3**
+5. better abstract the save model function
+6. allows loading pretrained model with different classes
+7. clean up convert.py codes + accept command arguments
+8. complete this README.md file
+9. support quick start in Google Colab
+10. apply tqdm to display progress
  

@@ -45,10 +45,12 @@ class SeparableConv(nn.Module):
 
 
 class MobileNet(nn.Module):
-    def __init__(self, num_class, alpha=1, input_resolution=224, **kwargs):
+    def __init__(self, num_class, alpha=1.0, input_resolution=224, **kwargs):
         super().__init__()
-        assert 0 < alpha <= 1, "width multiplier within (0, 1]"
-        assert 32 < input_resolution <= 224, "input resolution within (32, 224]"
+        if alpha <= 0:
+            raise ValueError("width multiplier must be positive")
+        if input_resolution < 1:
+            raise ValueError("input resolution must larger than 1")
         self.num_class, self.alpha, self.input_resolution = num_class, alpha, input_resolution
 
         num_channels = [int(c * alpha) for c in (32, 64, 128, 128, 256, 256, 512, 512, 512, 512, 512, 512, 1024, 1024)]
@@ -56,6 +58,7 @@ class MobileNet(nn.Module):
                        (112, 112, 56, 56, 28, 28, 14, 14, 14, 14, 14, 14, 7, 7)]
         assert len(num_channels) == len(resolutions)
 
+        # expand number of channels
         self.initial = nn.Sequential(
             nn.AdaptiveAvgPool2d(input_resolution),
             nn.Conv2d(3, num_channels[0], kernel_size=3, stride=2, padding=1, bias=False),
@@ -63,6 +66,7 @@ class MobileNet(nn.Module):
             nn.ReLU6(),
         )
 
+        # break down conv into depth-wise separable conv
         separable_convs = []
         for in_channels, out_channels, in_dim, out_dim in zip(num_channels[:-1], num_channels[1:], resolutions[:-1],
                                                               resolutions[1:]):
@@ -70,6 +74,7 @@ class MobileNet(nn.Module):
             separable_convs.append(SeparableConv(in_channels, out_channels, downscale=in_dim // out_dim))
         self.separable_convs = nn.Sequential(*separable_convs)
 
+        # classifier
         self.final = nn.Sequential(
             nn.AvgPool2d(resolutions[-1]),
             nn.Dropout(p=0.001),

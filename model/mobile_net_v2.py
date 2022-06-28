@@ -77,18 +77,23 @@ class Bottleneck(nn.Module):
 
 
 class MobileNetV2(nn.Module):
-    def __init__(self, num_class, **kwargs):
+    def __init__(self, num_class, alpha=1.0, input_resolution=224, **kwargs):
         super().__init__()
-        self.num_class = num_class
+        if alpha <= 0:
+            raise ValueError("width multiplier must be positive")
+        if input_resolution < 1:
+            raise ValueError("input resolution must larger than 1")
+        self.num_class, self.alpha, self.input_resolution = num_class, alpha, input_resolution
 
-        input_res = 224
+        input_res = int(input_resolution)
         final_res = int(input_res / (2 ** 5))
         expansion_factors = [1, 6, 6, 6, 6, 6, 6]
-        num_channels = [32, 16, 24, 32, 64, 96, 160, 320]
+        num_channels = [int(c * alpha) for c in (32, 16, 24, 32, 64, 96, 160, 320)]
         repeats = [1, 2, 3, 4, 3, 3, 1]
         strides = [1, 2, 2, 2, 1, 2, 1]
         assert len(expansion_factors) == (len(num_channels) - 1) == len(repeats) == len(strides)
 
+        # expand number of channels
         self.initial = nn.Sequential(
             nn.AdaptiveAvgPool2d(input_res),
             nn.Conv2d(3, num_channels[0], kernel_size=3, stride=2, padding=1, bias=False),
@@ -96,12 +101,14 @@ class MobileNetV2(nn.Module):
             nn.ReLU6(),
         )
 
+        # break down conv into inverted residual conv
         bottlenecks = []
         for expansion_factor, in_channels, out_channels, repeat, stride in zip(expansion_factors, num_channels[:-1],
                                                                                num_channels[1:], repeats, strides):
             bottlenecks.append(Bottleneck(in_channels, out_channels, stride, expansion_factor, repeat))
         self.bottlenecks = nn.Sequential(*bottlenecks)
 
+        # classifier
         self.final = nn.Sequential(
             PointWiseConv(num_channels[-1], 1280),
             nn.BatchNorm2d(1280),
