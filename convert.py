@@ -16,7 +16,7 @@ from converter import *
 
 
 def peek_pytorch_state():
-    network = MobileNetV2(1000)
+    network = MobileNetV2(1000, alpha=0.75)
     # network = mobilenet_v2(pretrained=True)
     network_state = network.state_dict()
 

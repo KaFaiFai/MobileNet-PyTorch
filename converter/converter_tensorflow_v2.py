@@ -36,8 +36,8 @@ class ConverterTensorFlowV2:
                             f"but got input_resolution={self.input_resolution}")
 
         self._model = tf.keras.applications.mobilenet_v2.MobileNetV2(
-            input_shape=None,
-            alpha=1.0,
+            input_shape=(self.input_resolution, self.input_resolution, 3),
+            alpha=self.alpha,
             include_top=True,
             weights='imagenet',
             input_tensor=None,
@@ -141,7 +141,7 @@ class ConverterTensorFlowV2:
         self._state_dict[f"{my_layer}.bias"] = torch.from_numpy(tf_weights[1])
 
 
-def test():
+def convert():
     converter = ConverterTensorFlowV2(alpha=0.75, input_resolution=160)
     converter.build_tf_model()
     converter.convert_state()
@@ -149,4 +149,4 @@ def test():
 
 
 if __name__ == '__main__':
-    test()
+    convert()
