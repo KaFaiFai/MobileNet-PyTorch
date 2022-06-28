@@ -73,14 +73,16 @@ class ConverterTensorFlow:
         torch.save(state, str(self.filename))
 
     def _tf2my_conv(self, tf_layer: str, my_layer: str, has_bias: bool = False):
-        # conv2d kernel shape: pytorch(OUT_C, IN_C, H, W), tensorflow(H, W, IN_C, OUT_C)
+        # tf weights: [kernel:(H, W, IN_C, OUT_C), bias]
+        # my params : [.weight:(OUT_C, IN_C, H, W), .bias]
         tf_weights = self._model.get_layer(tf_layer).get_weights()
         self._state_dict[f"{my_layer}.weight"] = torch.from_numpy(np.transpose(tf_weights[0], (3, 2, 0, 1)))
         if has_bias:
             self._state_dict[f"{my_layer}.bias"] = torch.from_numpy(tf_weights[1])
 
     def _tf2my_conv_dw(self, tf_layer: str, my_layer: str):
-        # conv2d kernel shape: pytorch(OUT_C, IN_C, H, W), tensorflow(H, W, OUT_C, IN_C)
+        # tf weights: [kernel:(H, W, OUT_C, IN_C), bias]
+        # my params : [.weight:(OUT_C, IN_C, H, W), .bias]
         tf_kernel = self._model.get_layer(tf_layer).get_weights()[0]
         self._state_dict[f"{my_layer}.weight"] = torch.from_numpy(np.transpose(tf_kernel, (2, 3, 0, 1)))
 
