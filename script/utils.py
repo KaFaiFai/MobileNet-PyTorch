@@ -5,6 +5,8 @@ from collections import defaultdict
 from pathlib import Path
 import torch
 from torch import Tensor
+from torch import nn
+import tensorflow as tf
 import numpy as np
 import random
 
@@ -49,6 +51,20 @@ def defaultdict_none(init_dict=None, **kwargs):
         init_dict = dict()
     whole_dict = {**init_dict, **kwargs}
     return defaultdict(return_none, **whole_dict)
+
+
+def peek_pytorch_network(network: nn.Module):
+    network_state = network.state_dict()
+    print("PyTorch model's state_dict:")
+    for param_tensor in network_state:
+        print(f"{param_tensor:<60}: {network_state[param_tensor].size()}")
+
+
+def peek_tensorflow_network(network: tf.keras.Model):
+    for layer in network.layers:
+        if len(layer.get_weights()) > 0:
+            for t, w in zip(layer.weights, layer.get_weights()):
+                print(f"{t.name:<60}: {w.shape}")
 
 
 def test():
