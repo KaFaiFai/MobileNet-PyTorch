@@ -76,6 +76,7 @@ def train(configs):
     # set up model, dataloader, optimizer, criterion
     Network = MODELS[model_type]
     if resume is not None:
+        # ensure pretrained data don't clash with input arguments
         state = torch.load(resume)
         if state["alpha"] != alpha or state["input_resolution"] != input_resolution:
             print(f"WARNING: different model parameters. "
