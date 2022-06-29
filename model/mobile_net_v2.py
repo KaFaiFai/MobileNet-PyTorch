@@ -2,6 +2,7 @@ import torch
 from torch import nn
 from torchvision.models import mobilenet_v2
 from torchsummary import summary
+from script.utils import to_nearest_multiple_of
 
 
 class DepthWiseConv(nn.Module):
@@ -84,12 +85,14 @@ class MobileNetV2(nn.Module):
         if input_resolution < 1:
             raise ValueError("input resolution must larger than 1")
         self.num_class, self.alpha, self.input_resolution = num_class, alpha, input_resolution
+        multiple = 8
 
         input_res = int(input_resolution)
         final_res = int(input_res / (2 ** 5))
         expansion_factors = [1, 6, 6, 6, 6, 6, 6]
         # somehow alpha doesn't apply to the 2nd and 3rd channel
-        num_channels = [int(32 * alpha)] + [16, 24] + [int(c * alpha) for c in (32, 64, 96, 160, 320)]
+        num_channels = [to_nearest_multiple_of(c * alpha, multiple) for c in (32, 16, 24, 32, 64, 96, 160, 320)]
+        final_channel = to_nearest_multiple_of(1280 * alpha, multiple)
         repeats = [1, 2, 3, 4, 3, 3, 1]
         strides = [1, 2, 2, 2, 1, 2, 1]
         assert len(expansion_factors) == (len(num_channels) - 1) == len(repeats) == len(strides)
@@ -111,13 +114,13 @@ class MobileNetV2(nn.Module):
 
         # classifier
         self.final = nn.Sequential(
-            PointWiseConv(num_channels[-1], 1280),
-            nn.BatchNorm2d(1280),
+            PointWiseConv(num_channels[-1], final_channel),
+            nn.BatchNorm2d(final_channel),
             nn.ReLU6(),
             nn.AvgPool2d(final_res),
             nn.Flatten(),
             nn.Dropout(p=0.001),
-            nn.Linear(1280, num_class),
+            nn.Linear(final_channel, num_class),
             # no softmax
         )
 
@@ -130,7 +133,7 @@ class MobileNetV2(nn.Module):
         return x
 
     def __repr__(self):
-        return f"MobileNetV2({self.num_class})"
+        return f"MobileNetV2({self.num_class}, alpha={self.alpha}, input_resolution={self.input_resolution})"
 
 
 def test():

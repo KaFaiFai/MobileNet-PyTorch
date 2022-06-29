@@ -46,6 +46,10 @@ def return_none(*args, **kwargs):
     return None
 
 
+def to_nearest_multiple_of(num, multiple):
+    return round(num / multiple) * multiple
+
+
 def defaultdict_none(init_dict=None, **kwargs):
     if init_dict is None:
         init_dict = dict()
@@ -56,8 +60,8 @@ def defaultdict_none(init_dict=None, **kwargs):
 def peek_pytorch_network(network: nn.Module):
     network_state = network.state_dict()
     print("PyTorch model's state_dict:")
-    for param_tensor in network_state:
-        print(f"{param_tensor:<60}: {network_state[param_tensor].size()}")
+    for layer_name, tensor in network_state.items():
+        print(f"{layer_name:<60}: {tensor.size()}")
 
 
 def peek_tensorflow_network(network: tf.keras.Model):
