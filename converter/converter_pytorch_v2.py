@@ -80,3 +80,14 @@ class ConverterPyTorchV2:
     def _pt2my_fc(self, pt_layer: str, my_layer: str):
         self._state_dict[f"{my_layer}.weight"] = self._model[f"{pt_layer}.weight"]
         self._state_dict[f"{my_layer}.bias"] = self._model[f"{pt_layer}.bias"]
+
+
+def convert():
+    converter = ConverterPyTorchV2()
+    converter.build_pt_model()
+    converter.convert_state()
+    converter.save_to(r".\pretrained")
+
+
+if __name__ == '__main__':
+    convert()

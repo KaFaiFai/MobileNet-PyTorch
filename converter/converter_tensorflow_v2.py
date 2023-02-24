@@ -26,8 +26,6 @@ class ConverterTensorFlowV2:
         """
         (input_resolution, alpha) in [96, 128, 160, 192, 224] x [0.35, 0.50, 0.75, 1.0, 1.3, 1.4]
         """
-        # if self.alpha != 1.0 and self.input_resolution != 224:
-        #     raise NotImplementedError("not implemented for alpha != 1 and input_res != 224")
         if self.alpha not in [0.35, 0.50, 0.75, 1.0, 1.3, 1.4]:
             raise Exception(f"alpha can only be one of 0.35, 0.50, 0.75, 1.0, 1.3 or 1.4, "
                             f"but got alpha={self.alpha}")
@@ -45,19 +43,6 @@ class ConverterTensorFlowV2:
             classes=1000,
             classifier_activation='softmax'
         )
-        # for layer in self._model.layers:
-        #     if len(layer.get_weights()) > 0:
-        #         for t, w in zip(layer.weights, layer.get_weights()):
-        #             dims = len(w.shape)
-        #             if dims == 1:
-        #                 list_peek = w[:5].tolist()
-        #             elif dims == 4:
-        #                 list_peek = w[:5, :5, :5, :5].tolist()
-        #             else:
-        #                 list_peek = []
-        #             print(f"{t.name:<60}: {w.shape} ")
-        #             f"{list_peek}")
-        # self._model.summary()
 
     def convert_state(self):
         assert self._model is not None, "model is not loaded yet. Please call build_tf_model() first"
@@ -94,9 +79,6 @@ class ConverterTensorFlowV2:
         self._tf2my_conv("Conv_1", "final.0.conv")
         self._tf2my_bn("Conv_1_bn", "final.1")
         self._tf2my_fc("predictions", "final.6")
-
-        # for param_tensor in self._state_dict:
-        #     print(f"{param_tensor:<60}: {self._state_dict[param_tensor].size()}")
 
     def save_to(self, out_dir, name="tfv2"):
         assert self._state_dict is not None, "state is not loaded yet. Please call convert_state() first"
@@ -140,11 +122,17 @@ class ConverterTensorFlowV2:
         self._state_dict[f"{my_layer}.weight"] = torch.from_numpy(tf_weights[0].T)
         self._state_dict[f"{my_layer}.bias"] = torch.from_numpy(tf_weights[1])
 
+    @property
+    def state_dict(self):
+        return self._state_dict
+
 
 def convert():
-    converter = ConverterTensorFlowV2(alpha=0.75, input_resolution=160)
+    converter = ConverterTensorFlowV2()
     converter.build_tf_model()
     converter.convert_state()
+    # for layer_name, tensor in converter.state_dict.items():
+    #     print(f"{layer_name:<60}: {tensor.size()}")
     converter.save_to(r".\pretrained")
 
 
