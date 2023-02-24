@@ -7,6 +7,7 @@ from torch import nn
 from torch.utils.data import DataLoader
 
 from config import *
+from optimizer.FlipAdam import FlipAdam
 from script import train_loop, evaluate_loop
 from script.utils import find_next_id, be_deterministic, defaultdict_none
 
@@ -97,12 +98,14 @@ def train(configs):
         from_epoch = 0
     train_dataloader = DataLoader(train_dataset, batch_size=batch_size, shuffle=True, num_workers=num_worker)
     test_dataloader = DataLoader(test_dataset, batch_size=batch_size, num_workers=num_worker)
-    optimizer = optim.Adam(network.parameters(), lr=lr)
+    # optimizer = optim.Adam(network.parameters(), lr=lr)
+    optimizer = FlipAdam(network.parameters(), lr=lr)
     criterion = nn.CrossEntropyLoss()
 
     # training loop
     for epoch in range(from_epoch, num_epoch):
         print(f"{'-' * 10} Epoch {epoch:2d}/{num_epoch} {'-' * 10}")
+        print(f"{'-' * 5} Test result {'-' * 5}")
         train_loop(network, train_dataloader, optimizer, criterion, **c)
 
         print(f"{'-' * 5} Validation result {'-' * 5}")
