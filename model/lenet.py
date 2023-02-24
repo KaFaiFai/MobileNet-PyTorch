@@ -2,19 +2,27 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 
+from math import floor
+
 
 class LeNet(nn.Module):
 
-    def __init__(self, num_class, **kwargs):
+    def __init__(self, num_class, input_resolution=224, **kwargs):
         super().__init__()
         self.num_class = num_class
 
+        final_resolution = floor(floor(input_resolution / 2 - 2) / 2 - 2)
+        final_num = 16 * final_resolution ** 2
+        print("final", final_resolution)
+
+        self.resize = nn.AdaptiveAvgPool2d(input_resolution)
         self.conv1 = nn.Conv2d(3, 6, 5)
         self.conv2 = nn.Conv2d(6, 16, 5)
-        self.fc1 = nn.Linear(44944, 5000)
-        self.fc2 = nn.Linear(5000, num_class)
+        self.fc1 = nn.Linear(final_num, final_num // 10)
+        self.fc2 = nn.Linear(final_num // 10, num_class)
 
     def forward(self, x):
+        x = self.resize(x)
         x = F.max_pool2d(F.relu(self.conv1(x)), 2)
         x = F.max_pool2d(F.relu(self.conv2(x)), 2)
         x = torch.flatten(x, 1)
