@@ -8,13 +8,13 @@ implementation**
 ## Examples
 
 Evaluation results on ImageNet   
-The following pretrained models are converted from different sources using `convert.py`
+The following pretrained models are converted from different sources using `convert.py` or `converter/converter_*.py`
 
-| Model                                                                                                                                                                                                        | Top 1 Accuracy | Top 5 Accuracy | F1 score |
-|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------|----------------|----------|
-| [MobileNet](https://drive.google.com/file/d/1gFH0c6YregiiFctTFBIjr_7ffHZIUfxp/view?usp=sharing) <br/>from [TensorFlow](https://www.tensorflow.org/api_docs/python/tf/keras/applications/mobilenet/MobileNet) | 64.21%         | 85.12%         | 0.6411   |
-| [MobileNet](https://drive.google.com/file/d/1CSSJi0brQZ0Le89XtYvrXXfpaFLyusSg/view?usp=sharing) <br/>from [wjc852456](https://github.com/wjc852456/pytorch-mobilenet-v1.git)                                 | 67.95%         | 88.13%         | 0.6762   |
-| [MobileNetV2](https://drive.google.com/file/d/1CSSJi0brQZ0Le89XtYvrXXfpaFLyusSg/view?usp=sharing) <br/>from [PyTorch](https://drive.google.com/file/d/1VExkcO5r7g3-jn4nu_Jhz5__pj4Zxqz8/view?usp=sharing)    | 69.84%         | 89.26%         | 0.6952   |
+| Model                                                                                                                                                                                                         | Config (α, dim) | # of mult-adds | Top 1 Accuracy | Top 5 Accuracy | F1 score |
+|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------|----------------|----------------|----------------|----------|
+| [MobileNet](https://drive.google.com/file/d/11fuptwvQWr-G78RU7W5KugZlasYGNnwG/view?usp=sharing) <br/> from [Tensorflow](https://www.tensorflow.org/api_docs/python/tf/keras/applications/mobilenet/MobileNet) | (0.5, 160)      | 76.54 M        | 36.06%         | 59.91%         | 0.3711   |
+| [MobileNet](https://drive.google.com/file/d/1gFH0c6YregiiFctTFBIjr_7ffHZIUfxp/view?usp=sharing) <br/>from [TensorFlow](https://www.tensorflow.org/api_docs/python/tf/keras/applications/mobilenet/MobileNet)  | (1.0, 224)      | 568.76 M       | 64.21%         | 85.12%         | 0.6411   |
+| [MobileNetV2](https://drive.google.com/file/d/18ZOdYjS1uqMt1eUEsW6WQNwrVWDRL6cR/view?usp=sharing) <br/>from [PyTorch](https://drive.google.com/file/d/1VExkcO5r7g3-jn4nu_Jhz5__pj4Zxqz8/view?usp=sharing)     | (1.0, 224)      | 300.81 M       | 69.84%         | 89.26%         | 0.6952   |
 
 ## Todo
 
