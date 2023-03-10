@@ -21,6 +21,7 @@ parser.add_argument("--batch-size", type=int, help="training batch size", requir
 
 # hyper parameters
 parser.add_argument("--lr", type=float, help="training learning rate", default=3e-4)
+parser.add_argument("--power", type=float, help="power of FliPadam", default=0.5)
 parser.add_argument("--alpha", type=float, help="width multiplier of MobileNet", default=1.0)
 parser.add_argument("--input-resolution", type=int, help="input resolution of MobileNet", default=224)
 
@@ -40,6 +41,7 @@ def train(configs):
     # hyper parameters
     batch_size = configs.batch_size
     lr = configs.lr
+    power = configs.power
     alpha = configs.alpha
     input_resolution = configs.input_resolution
 
@@ -99,13 +101,13 @@ def train(configs):
     train_dataloader = DataLoader(train_dataset, batch_size=batch_size, shuffle=True, num_workers=num_worker)
     test_dataloader = DataLoader(test_dataset, batch_size=batch_size, num_workers=num_worker)
     # optimizer = optim.Adam(network.parameters(), lr=lr)
-    optimizer = FlipAdam(network.parameters(), lr=lr)
+    optimizer = FlipAdam(network.parameters(), lr=lr, power=power)
     criterion = nn.CrossEntropyLoss()
 
     # training loop
     for epoch in range(from_epoch, num_epoch):
-        print(f"{'-' * 10} Epoch {epoch:2d}/{num_epoch} {'-' * 10}")
-        print(f"{'-' * 5} Test result {'-' * 5}")
+        print(f"{'-' * 10} Epoch {epoch + 1:2d}/{num_epoch} {'-' * 10}")
+        print(f"{'-' * 5} Train result {'-' * 5}")
         train_loop(network, train_dataloader, optimizer, criterion, **c)
 
         print(f"{'-' * 5} Validation result {'-' * 5}")
